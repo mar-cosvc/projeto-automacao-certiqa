@@ -1,0 +1,30 @@
+{
+  "name": "projeto-automacao-certiqa",
+  "version": "1.0.0",
+  "description": "Projeto de testes automatizados com Cypress e Cucumber (BDD) para o CertiQA",
+  "main": "cypress.config.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "cypress run"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "bdd",
+    "qa",
+    "certiqa"
+  ],
+  "author": "",
+  "license": "ISC",
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/e2e/step_definitions/**/*.{js,ts}"
+    ]
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^28.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "cypress": "^16.1.0"
+  }
+}
