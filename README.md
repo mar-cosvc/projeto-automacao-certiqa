@@ -1,6 +1,6 @@
 # CertiQA — Automação de Testes (Cypress + BDD)
 
-Manual do time para QAs juniores trabalharem em grupo no GitHub **sem gerar conflitos**.
+Manual do time para QAs trabalharem em grupo no GitHub **sem gerar conflitos**.
 
 ---
 
