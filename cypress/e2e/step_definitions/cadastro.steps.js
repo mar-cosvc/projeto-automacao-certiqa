@@ -7,7 +7,7 @@ const And = Given;
 
 Given("que eu estou na página inicial do CertiQA", () => {
   // Abre a página inicial usando a baseUrl configurada em cypress.config.js
-  // cy.visit("/");
+  cy.visit("/");
 });
 
 When("eu clico no botão ou link de cadastro", () => {
