@@ -20,12 +20,16 @@ Cenário: Cadastro apenas com o primeiro nome
 E preencho o campo de nome "Lilu"
 E preencho os demais campos com dados fictícios
 E clico no botão de finalizar cadastro
+Então devo ver a mensagem "Cadastro realizado com sucesso!"
+E devo ver a mensagem "Conta criada! Para acessar o conteúdo, finalize sua assinatura."
 
 
 Cenário: Cadastro com números no campo de nome
 E preencho o campo de nome "1234559"
 E preencho os demais campos com dados fictícios
 E clico no botão de finalizar cadastro
+Então devo ver a mensagem "Cadastro realizado com sucesso!"
+E devo ver a mensagem "Conta criada! Para acessar o conteúdo, finalize sua assinatura."
 
 
 Cenário: Cadastro com nome em branco
@@ -70,8 +74,8 @@ E devo ver a mensagem "Este e-mail já está sendo utilizado por outro usuário.
 Cenário: Senha com 1 caracter
 E preencho o campo de nome com dados fictícios
 E preencho o campo de email "joao@hotmail.com"
-E preencho o campo de senha " "
-E preencho o campo de confirmar senha " "
+E preencho o campo de senha "2"
+E preencho o campo de confirmar senha "2"
 E clico no botão de finalizar cadastro
 Então devo ver a mensagem "Senha deve ter pelo menos 6 caracteres"
 
