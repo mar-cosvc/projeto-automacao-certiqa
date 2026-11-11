@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import questoesCtfl from "../fixtures/questoes_ctfl.json";
+import questoesCtfl from "../../fixtures/questoes_ctfl.json";
 
 const porcAprovacao = 0.6;
 let totalNumQuestoes;

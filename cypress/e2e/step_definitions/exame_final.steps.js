@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import examesFasePage from "../page/exames_fase.page";
-import exameFinalPage from "../page/exame_final.page";
+import examesFasePage from "../../support/pages/exames_fase.page";
+import exameFinalPage from "../../support/pages/exame_final.page";
 
 let nomeCenario = "";
 
