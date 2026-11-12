@@ -274,9 +274,9 @@ class ExamesFasePage {
         }
     }
 
-    responderQuestoesSetentaPorCento() {
+    responderQuestoesPercentual(percentual) {
         const gabarito = certificacoes[this.certificacaoAtual][this.faseAtual].gabarito;
-        const quantidadeCerta = Math.round(gabarito.length * 0.7);
+        const quantidadeCerta = Math.ceil(gabarito.length * percentual);
 
         gabarito.forEach((respostaCorreta, index) => {
             if (index < quantidadeCerta) {
@@ -294,9 +294,9 @@ class ExamesFasePage {
         });
     }
 
-    finalizarExameCom70() {
+    finalizarExamePercentual(percentual) {
         const totalQuestoes = certificacoes[this.certificacaoAtual][this.faseAtual].gabarito.length;
-        const acertos = Math.round(totalQuestoes * 0.7);
+        const acertos = Math.ceil(totalQuestoes * percentual);
         cy.contains(`${acertos}/${totalQuestoes}`).should("be.visible");
     }
 
