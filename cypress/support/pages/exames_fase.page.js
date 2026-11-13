@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 import certificacoes from "../../fixtures/certificacoes.json";
 import questoesCtfl from "../../fixtures/questoes_ctfl.json";
+import questoesCtflAt from "../../fixtures/questoes_ctfl-at.json";
 
 const porcAprovacao = 0.6;
 let totalNumQuestoes;
@@ -305,6 +306,9 @@ class ExamesFasePage {
     }
 
     acessarCertificacao(opcaoMenu, certificacao) {
+        this.certificacaoAtual = certificacao.includes("CTFL-AT")
+            ? "Agile Tester"
+            : "CTFL";
         cy.contains("nav a", opcaoMenu).click();
         cy.contains("div.rounded-lg div h3", certificacao)
             .parent("div")
@@ -359,7 +363,10 @@ class ExamesFasePage {
             .then((texto) => {
                 const perguntaAtual = texto.trim();
                 const chaveFase = fase.toLowerCase().replace(/\s+/g, "");
-                const questoesDaFase = questoesCtfl[chaveFase];
+                const questoes = this.certificacaoAtual === "Agile Tester"
+                    ? questoesCtflAt
+                    : questoesCtfl;
+                const questoesDaFase = questoes[chaveFase];
                 expect(questoesDaFase, `Fase "${fase}" encontrada no fixture`).to.exist;
                 const normalizarPergunta = (pergunta) =>
                     pergunta.replace(/['"“”‘’]/g, "").trim();
@@ -375,7 +382,11 @@ class ExamesFasePage {
     responderQuestaoCorretamente(fase) {
         return this.buscarQuestaoAtual(fase).then((questao) => {
             const respostaCorreta = questao["resposta-correta"];
-            return cy.contains("div.space-y-2 label", respostaCorreta).click().then(() => {
+            return cy.get("div.space-y-2 label", { timeout: 15000 })
+                .should("have.length.at.least", 2)
+                .then(() => cy.contains("div.space-y-2 label", respostaCorreta, { timeout: 15000 }))
+                .click()
+                .then(() => {
                 cy.log(`Resposta correta selecionada: ${respostaCorreta}`);
             });
         });
@@ -385,7 +396,8 @@ class ExamesFasePage {
         return this.buscarQuestaoAtual(fase).then((questao) => {
             const respostaCorreta = questao["resposta-correta"].trim();
             return cy
-                .get("div.space-y-2 label")
+                .get("div.space-y-2 label", { timeout: 15000 })
+                .should("have.length.at.least", 2)
                 .filter((_, alternativa) => alternativa.innerText.trim() !== respostaCorreta)
                 .first()
                 .should("exist")

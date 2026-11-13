@@ -37,25 +37,25 @@
         },
         "questao8": {
             "pergunta": "Como a comunicação face a face beneficia equipes ágeis?",
-            "resposta-correta": "É mais eficaz e permite feedback imediato",
+            "resposta-correta": "É mais eficiente e permite feedback imediato",
             "explicacao": "A comunicação face a face é mais eficiente, reduz mal-entendidos e permite resolução rápida de problemas através de feedback imediato."
         },
         "questao9": {
-            "pergunta": "Qual é o impacto da colaboração com o cliente mais que negociação de contratos?",
+            "pergunta": "Qual é o impacto de \"colaboração com o cliente mais que negociação de contratos\"?",
             "resposta-correta": "Promove parceria contínua e adaptação",
             "explicacao": "Este valor ágil promove parceria contínua com o cliente, permitindo adaptação a mudanças e maior satisfação com o produto final."
         },
         "questao10": {
             "pergunta": "Por que testadores ágeis precisam ser especialistas em teste e colaboradores da equipe?",
-            "resposta-correta": "Vieram expertise de risco e integram-se à equipe",
+            "resposta-correta": "Mantêm expertise técnica e integram-se à equipe",
             "explicacao": "Testadores ágeis trazem expertise técnica e integram-se à equipe, contribuindo para qualidade geral e não apenas para o rastreando de defeitos."
         }
     },
     "fase2": {
         "questao1": {
-            "pergunta": "O que é a Pirâmide de Testes em projetos ágeis?",
-            "resposta-correta": "Muitos testes na base, poucos testes de interface",
-            "expliccacao": "A Pirâmide de Testes mostra que devemos ter muitos testes na base (unidade), quantidade moderada na faixa de integração (nível) e poucos testes de interface (topo)."
+            "pergunta": "O que caracteriza a Pirâmide de Testes em projetos ágeis?",
+            "resposta-correta": "Muitos testes unitários, poucos testes de interface",
+            "expliccacao": "A Pirâmide de Testes mostra que devemos ter muitos testes unitários (base), quantidade moderada de testes de integração (meio) e poucos testes de interface (topo)."
         },
         "questao2": {
             "pergunta": "No Planning Poker, qual é o principal objetivo?",
@@ -78,23 +78,23 @@
             "expliccacao": "Integração Contínua é a prática de build automático e execução de testes sempre que há mudanças no código, garantindo feedback imediato."
         },
         "questao6": {
-            "pergunta": "Por que testes de interface estão no topo da pirâmide de testes?",
+            "pergunta": "Por que testes de interface estão no topo da Pirâmide de Testes?",
             "resposta-correta": "São mais caros, lentos e difíceis de manter",
             "expliccacao": "Testes de interface estão no topo porque são mais caros, lentos e difíceis de manter, em vez dos testes com pirâmide."
         },
         "questao7": {
-            "pergunta": "Como o Planning Poker reduz viés individual em estimativas?",
-            "resposta-correta": "Força discussão e nova votação em grupo",
+            "pergunta": "Como Planning Poker reduz viés individual em estimativas?",
+            "resposta-correta": "Força discussão e consenso da equipe",
             "expliccacao": "Planning Poker força discussão devido às divergências das estimativas levando o consenso informado da equipe."
         },
         "questao8": {
-            "pergunta": "Qual é a vantagem para os reviews de sprint?",
-            "resposta-correta": "Demonstrar soft / deliverables e obter feedback",
+            "pergunta": "Qual é a vantagem das reviews de sprint?",
+            "resposta-correta": "Demonstrar funcionalidades e obter feedback",
             "expliccacao": "Reviews de sprint permitem demonstrar funcionalidades construídas e obter feedback direto dos stakeholders."
         },
         "questao9": {
             "pergunta": "Como equipes multifuncionais reduzem dependências?",
-            "resposta-correta": "Têm todos habilidades internamente",
+            "resposta-correta": "Têm todas habilidades internamente",
             "expliccacao": "Equipes multifuncionais têm todas as habilidades necessárias internamente, evitando depender por recursos externos."
         },
         "questao10": {
@@ -110,7 +110,7 @@
             "explicacao": "O ciclo do TDD é Red-Green-Refactor: escrever teste que falha (Red), escrever código mínimo para passar (Green), melhorar o código (Refactor)."
         },
         "questao2": {
-            "pergunta": "No contexto de TDD, quem são os Three Amigos?",
+            "pergunta": "No contexto de ATDD, quem são os \"Three Amigos\"?",
             "resposta-correta": "Product Owner, Developer, Tester",
             "explicacao": "Os Three Amigos são Product Owner (define o que), Developer (faz o código) e Tester (define cenários de teste)."
         },
@@ -130,8 +130,8 @@
             "explicacao": "Session-Based Testing é uma abordagem estruturada para teste exploratório, com uso de definições de missão (time-box) e relatório de resultados."
         },
         "questao6": {
-            "pergunta": "Por que o passo Red é importante no TDD?",
-            "resposta-correta": "Garante que o teste realmente falha quando deve ser",
+            "pergunta": "Por que o passo \"Red\" é importante no TDD?",
+            "resposta-correta": "Garante que o teste realmente falha quando deveria",
             "explicacao": "O passo Red garante que o teste realmente falha quando deveria, validando que o teste está correto e testável."
         },
         "questao7": {
@@ -151,7 +151,7 @@
         },
         "questao10": {
             "pergunta": "Por que debriefing é importante em Session-Based Testing?",
-            "resposta-correta": "Captura conhecimento e excursões descobertas",
+            "resposta-correta": "Captura conhecimento e documenta descobertas",
             "explicacao": "Debriefing captura conhecimento adquirido, documenta descobertas e identifica direções que precisam de mais investigação."
         }
     }

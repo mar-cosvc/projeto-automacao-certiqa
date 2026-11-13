@@ -67,10 +67,9 @@
       | Agile Tester | fase 2 |
       | Agile Tester | fase 3 |
 
-
 Cenário: Reprovação com pontuação inferior a 70 por cento e refazer exame
 Quando acessar o menu "Certificações" e seleciona certificação "(CTFL)"
-Quando selecionar "Fase 2" e clicar em Iniciar Quiz
+Quando selecionar "Fase 1" e clicar em Iniciar Quiz
 E finalizar o exame com pontuação inferior a 70 por cento
 Então o aluno não deve ser aprovado na fase
 Quando clicar em tentar novamente
