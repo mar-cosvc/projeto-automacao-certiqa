@@ -1,0 +1,158 @@
+{
+    "fase1": {
+        "questao1": {
+            "pergunta": "Qual dos seguintes é um valor fundamental do Manifesto Ágil?",
+            "resposta-correta": "Indivíduos e interações mais que processos e ferramentas",
+            "explicacao": "O Manifesto Ágil valoriza indivíduos e interações mais que processos e ferramentas, realçando a importância das pessoas e da comunicação."
+        },
+        "questao2": {
+            "pergunta": "Em projetos ágeis, qual é a principal diferença em relação à documentação comparado aos métodos tradicionais?",
+            "resposta-correta": "Documentação mínima e focada no essencial",
+            "explicacao": "Em projetos ágeis, prefere-se documentação mínima e focada no essencial, ao contrário dos métodos tradicionais que tendem a ser mais extensos e exaustivos."
+        },
+        "questao3": {
+            "pergunta": "Qual é o papel principal do testador em uma equipe ágil?",
+            "resposta-correta": "Facilitador de qualidade colaborando com toda equipe",
+            "explicacao": "O testador ágil atua como facilitador de qualidade, colaborando com toda a equipe para garantir a entrega de software com qualidade."
+        },
+        "questao4": {
+            "pergunta": "O que caracteriza uma equipe auto-organizada em métodos ágeis?",
+            "resposta-correta": "Equipes multifuncionais com autonomia para decisões",
+            "explicacao": "Equipes auto-organizadas são multifuncionais e têm autonomia para tomar decisões sobre como realizar o trabalho."
+        },
+        "questao5": {
+            "pergunta": "No contexto ágil, o que significa responder a mudanças mais que seguir um plano?",
+            "resposta-correta": "Adaptar-se rapidamente a mudanças de requisitos",
+            "explicacao": "Significa que as equipes ágeis valorizam a capacidade de adaptar-se rapidamente a mudanças de requisitos e prioridades, ao invés de seguir rigidamente um plano inicial."
+        },
+        "questao6": {
+            "pergunta": "Qual é um benefício das iterações curtas em desenvolvimento ágil?",
+            "resposta-correta": "Permitem feedback rápido e ajustes frequentes",
+            "explicacao": "Iterações curtas permitem feedback rápido dos stakeholders, reduzindo riscos e permitindo ajustes frequentes na direção do produto."
+        },
+        "questao7": {
+            "pergunta": "Em métodos ágeis, qual é a importância da entrega contínua de valor?",
+            "resposta-correta": "Garante benefícios tangíveis regulares ao cliente",
+            "explicacao": "A entrega contínua de valor garante que o cliente receba benefícios tangíveis regularmente, mantendo engajamento e permitindo validação constante."
+        },
+        "questao8": {
+            "pergunta": "Como a comunicação face a face beneficia equipes ágeis?",
+            "resposta-correta": "É mais eficiente e permite feedback imediato",
+            "explicacao": "A comunicação face a face é mais eficiente, reduz mal-entendidos e permite resolução rápida de problemas através de feedback imediato."
+        },
+        "questao9": {
+            "pergunta": "Qual é o impacto de \"colaboração com o cliente mais que negociação de contratos\"?",
+            "resposta-correta": "Promove parceria contínua e adaptação",
+            "explicacao": "Este valor ágil promove parceria contínua com o cliente, permitindo adaptação a mudanças e maior satisfação com o produto final."
+        },
+        "questao10": {
+            "pergunta": "Por que testadores ágeis precisam ser especialistas em teste e colaboradores da equipe?",
+            "resposta-correta": "Mantêm expertise técnica e integram-se à equipe",
+            "explicacao": "Testadores ágeis trazem expertise técnica e integram-se à equipe, contribuindo para qualidade geral e não apenas para o rastreando de defeitos."
+        }
+    },
+    "fase2": {
+        "questao1": {
+            "pergunta": "O que caracteriza a Pirâmide de Testes em projetos ágeis?",
+            "resposta-correta": "Muitos testes unitários, poucos testes de interface",
+            "expliccacao": "A Pirâmide de Testes mostra que devemos ter muitos testes unitários (base), quantidade moderada de testes de integração (meio) e poucos testes de interface (topo)."
+        },
+        "questao2": {
+            "pergunta": "No Planning Poker, qual é o principal objetivo?",
+            "resposta-correta": "Obter consenso da equipe sobre complexidade",
+            "expliccacao": "O Planning Poker busca o consenso da equipe sobre a complexidade e o esforço da história útil e estimativas de esforço relativas."
+        },
+        "questao3": {
+            "pergunta": "O que são Pontos de História?",
+            "resposta-correta": "Medida relativa de esforço baseada em complexidade",
+            "expliccacao": "Pontos de história são uma medida relativa de esforço baseada em complexidade, não em tempo, permitindo com certeza em diferentes equipes."
+        },
+        "questao4": {
+            "pergunta": "Qual é uma característica das equipes multifuncionais?",
+            "resposta-correta": "Possuem habilidades compartilhadas para atividade",
+            "expliccacao": "Equipes multifuncionais têm responsabilidade compartilhada pela qualidade e incluem diferentes papéis como desenvolvedor, testador e analista de negócio."
+        },
+        "questao5": {
+            "pergunta": "O que é Integração Contínua no contexto ágil?",
+            "resposta-correta": "Build automática e testes a cada mudança",
+            "expliccacao": "Integração Contínua é a prática de build automático e execução de testes sempre que há mudanças no código, garantindo feedback imediato."
+        },
+        "questao6": {
+            "pergunta": "Por que testes de interface estão no topo da Pirâmide de Testes?",
+            "resposta-correta": "São mais caros, lentos e difíceis de manter",
+            "expliccacao": "Testes de interface estão no topo porque são mais caros, lentos e difíceis de manter, em vez dos testes com pirâmide."
+        },
+        "questao7": {
+            "pergunta": "Como Planning Poker reduz viés individual em estimativas?",
+            "resposta-correta": "Força discussão e consenso da equipe",
+            "expliccacao": "Planning Poker força discussão devido às divergências das estimativas levando o consenso informado da equipe."
+        },
+        "questao8": {
+            "pergunta": "Qual é a vantagem das reviews de sprint?",
+            "resposta-correta": "Demonstrar funcionalidades e obter feedback",
+            "expliccacao": "Reviews de sprint permitem demonstrar funcionalidades construídas e obter feedback direto dos stakeholders."
+        },
+        "questao9": {
+            "pergunta": "Como equipes multifuncionais reduzem dependências?",
+            "resposta-correta": "Têm todas habilidades internamente",
+            "expliccacao": "Equipes multifuncionais têm todas as habilidades necessárias internamente, evitando depender por recursos externos."
+        },
+        "questao10": {
+            "pergunta": "Por que automação de testes é importante em projetos ágeis?",
+            "resposta-correta": "Permite execução rápida e frequente",
+            "expliccacao": "Automação permite execução rápida e frequente de testes, essencial para suportar entregas contínuas e validações regressivas."
+        }
+    },
+    "fase3": {
+        "questao1": {
+            "pergunta": "Qual é o ciclo do Test-Driven Development (TDD)?",
+            "resposta-correta": "Red-Green-Refactor",
+            "explicacao": "O ciclo do TDD é Red-Green-Refactor: escrever teste que falha (Red), escrever código mínimo para passar (Green), melhorar o código (Refactor)."
+        },
+        "questao2": {
+            "pergunta": "No contexto de ATDD, quem são os \"Three Amigos\"?",
+            "resposta-correta": "Product Owner, Developer, Tester",
+            "explicacao": "Os Three Amigos são Product Owner (define o que), Developer (faz o código) e Tester (define cenários de teste)."
+        },
+        "questao3": {
+            "pergunta": "Qual é a estrutura básica da linguagem Gherkin no BDD?",
+            "resposta-correta": "Given-When-Then",
+            "explicacao": "A estrutura Gherkin segue o padrão Given-When-Then (Given [contexto inicial], When [ação executada], Then [resultado esperado])."
+        },
+        "questao4": {
+            "pergunta": "O que caracteriza o teste exploratório?",
+            "resposta-correta": "Investigação simultânea de aprendizado, design e execução",
+            "explicacao": "O teste exploratório é a investigação simultânea de aprendizado, design e execução, adaptando-se baseado no que é descoberto durante o teste."
+        },
+        "questao5": {
+            "pergunta": "O que é Session-Based Testing?",
+            "resposta-correta": "Abordagem em teste, baseada em missão e tempo definido",
+            "explicacao": "Session-Based Testing é uma abordagem estruturada para teste exploratório, com uso de definições de missão (time-box) e relatório de resultados."
+        },
+        "questao6": {
+            "pergunta": "Por que o passo \"Red\" é importante no TDD?",
+            "resposta-correta": "Garante que o teste realmente falha quando deveria",
+            "explicacao": "O passo Red garante que o teste realmente falha quando deveria, validando que o teste está correto e testável."
+        },
+        "questao7": {
+            "pergunta": "Como ATDD melhora o entendimento de requisitos?",
+            "resposta-correta": "Define critérios claros antes do desenvolvimento",
+            "explicacao": "ATDD força a definição clara de critérios de aceitação antes de escrever código, alinhar expectativas de todos os envolvidos."
+        },
+        "questao8": {
+            "pergunta": "Qual é a vantagem dos cenários Gherkin no BDD?",
+            "resposta-correta": "Usam linguagem natural estruturada",
+            "explicacao": "Cenários Gherkin usam linguagem natural estruturada que pode ser entendida tanto por técnicos quanto por pessoas de negócio."
+        },
+        "questao9": {
+            "pergunta": "Como teste exploratório complementa testes automatizados?",
+            "resposta-correta": "Descobre problemas não previstos",
+            "explicacao": "Teste exploratório descobre problemas não previstos pelos testes automatizados, usando criatividade e intuição humana."
+        },
+        "questao10": {
+            "pergunta": "Por que debriefing é importante em Session-Based Testing?",
+            "resposta-correta": "Captura conhecimento e documenta descobertas",
+            "explicacao": "Debriefing captura conhecimento adquirido, documenta descobertas e identifica direções que precisam de mais investigação."
+        }
+    }
+}
