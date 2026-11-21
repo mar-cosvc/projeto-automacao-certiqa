@@ -387,8 +387,8 @@ class ExamesFasePage {
                 .then(() => cy.contains("div.space-y-2 label", respostaCorreta, { timeout: 15000 }))
                 .click()
                 .then(() => {
-                cy.log(`Resposta correta selecionada: ${respostaCorreta}`);
-            });
+                    cy.log(`Resposta correta selecionada: ${respostaCorreta}`);
+                });
         });
     }
 

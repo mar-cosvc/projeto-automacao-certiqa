@@ -9,46 +9,33 @@ Before(({ pickle }) => {
   nomeCenario = pickle.name;
 });
 
-function responderAteResultado(fase, quantidadeErradas, erradasRespondidas = 0) {
-  return cy
-    .get("div.flex-col.p-6 h3")
-    .should("be.visible")
-    .invoke("text")
-    .then((titulo) => {
-      if (titulo.includes("Resultado")) {
-        return;
-      }
-
-      const respondeuErrado = erradasRespondidas < quantidadeErradas;
-      const responder = respondeuErrado
-        ? examesFasePage.responderQuestaoIncorretamente(fase)
-        : examesFasePage.responderQuestaoCorretamente(fase);
-
-      return responder
-        .then(() => examesFasePage.clicarBotaoProximo())
-        .then(() =>
-          responderAteResultado(
-            fase,
-            quantidadeErradas,
-            erradasRespondidas + (respondeuErrado ? 1 : 0)
-          )
-        );
-    });
-}
-
-// funcao para validar 1 ponto por acerto, sem desconto por erro
-function validarNumQuestoesAcertadas() {
-  return examesFasePage.resultadoQuestoesAcertadas().should("equal", examesFasePage.numQuestoesAcertadas(nomeCenario));
-}
-
 When("iniciar simulado final", () => {
-  examesFasePage.botaoIniciarSimuladoFinal().click()
-  cy.get("h1.font-bold").should("have.text", "Simulado Final")
+  const certificacao = examesFasePage.certificacaoAtual;
+  if (!certificacao) {
+    throw new Error("Selecione uma certificação antes de iniciar o simulado final.");
+  }
+  examesFasePage.botaoIniciarSimuladoFinal().should("be.visible").click()
+  const seletorTitulo = certificacao === "Agile Tester" ? "h2" : "h1";
+  cy.contains(seletorTitulo, "Simulado Final", { timeout: 15000 }).should("be.visible")
   examesFasePage.clicarIniciarQuiz()
 })
 
-Then("validar que a página do exame final foi aberta e possui 40 questões", () => {
-  cy.get(".space-y-6").its("length").should("equal", 40)
-  cy.get("[role='radiogroup'] div.p-4").its("length").should("equal", 40*4)
-  exameFinalPage.exibirQuestaoCentroTela()
+Then("validar que a página do exame final foi aberta e possui 40 questões com tempo de 60 minutos para finalizar o exame", () => {
+  exameFinalPage.contadorTempoExameFinal().should("have.text", "60:00")
+  exameFinalPage.totalQuestoesExameFinal().should("equal", 40)
+  exameFinalPage.alternativasExameFinal().its("length").should("equal", 40 * 4)
+})
+
+When("finalizar o exame", () => {
+  exameFinalPage.questoesExameFinal().each(($el, indice) =>
+    exameFinalPage.finalizarExameFinal(indice, nomeCenario)
+  );
+  examesFasePage.botaoAzul()
+    .should("contain.text", "(40/40)")
+    .click();
+})
+
+Then ("o sistema deve apresentar o {string} imediatamente com o {string}", (resultado, texto) => {
+  exameFinalPage.mensagemResultadoExameFinal().should("have.text", resultado)
+  exameFinalPage.textoResultadoExameFinal().should("contain.text", texto)
 })
