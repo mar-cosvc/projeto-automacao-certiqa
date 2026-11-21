@@ -206,21 +206,23 @@ class ExamesFasePage {
         cy.contains("Fases de Estudo").should("be.visible");
     }
 
-    selecionarFase(fase) {
+    selecionarFase(fase, timeout = 4000) {
         this.faseAtual = fase;
         const dadosFase = certificacoes[this.certificacaoAtual][fase];
 
-        cy.contains(dadosFase.titulo)
+        cy.contains(dadosFase.titulo, { timeout })
             .parent()
             .parent()
-            .contains(/Iniciar estudo|Revisar fase|Continuar estudo/i)
+            .contains(/Iniciar estudo|Revisar fase|Continuar estudo/i, { timeout })
             .click({ force: true });
 
-        this.abrirQuiz();
+        this.abrirQuiz(timeout);
     }
 
-    abrirQuiz() {
-        cy.contains(/Iniciar Quiz|Refazer quiz/i).should("be.visible").click({ force: true });
+    abrirQuiz(timeout = 4000) {
+        cy.contains(/Iniciar Quiz|Refazer quiz/i, { timeout })
+            .should("be.visible")
+            .click({ force: true });
     }
 
     responderQuestoes() {
@@ -274,22 +276,22 @@ class ExamesFasePage {
         }
     }
 
-    responderQuestoesPercentual(percentual) {
+    responderQuestoesPercentual(percentual, timeout = 4000) {
         const gabarito = certificacoes[this.certificacaoAtual][this.faseAtual].gabarito;
         const quantidadeCerta = Math.ceil(gabarito.length * percentual);
 
         gabarito.forEach((respostaCorreta, index) => {
             if (index < quantidadeCerta) {
-                cy.contains(respostaCorreta).should("be.visible").click({ force: true });
+                cy.contains(respostaCorreta, { timeout }).should("be.visible").click({ force: true });
             } else {
-                cy.get("label")
+                cy.get("label", { timeout })
                     .not(`:contains("${respostaCorreta}")`)
                     .first()
                     .click({ force: true });
             }
 
             if (index < gabarito.length - 1) {
-                cy.contains("button", "Próxima").should("be.visible").click({ force: true });
+                cy.contains("button", "Próxima", { timeout }).should("be.visible").click({ force: true });
             }
         });
     }

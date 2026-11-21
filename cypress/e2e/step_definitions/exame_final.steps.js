@@ -1,54 +1,73 @@
 /// <reference types="cypress" />
-import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import examesFasePage from "../../support/pages/exames_fase.page";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import exameFinalPage from "../../support/pages/exame_final.page";
+import examesFasePage from "../../support/pages/exames_fase.page";
 
-let nomeCenario = "";
-
-Before(({ pickle }) => {
-  nomeCenario = pickle.name;
+Given("que o aluno {string} está logado no sistema", (tipoUsuario) => {
+  cy.login(tipoUsuario);
 });
 
-function responderAteResultado(fase, quantidadeErradas, erradasRespondidas = 0) {
-  return cy
-    .get("div.flex-col.p-6 h3")
-    .should("be.visible")
-    .invoke("text")
-    .then((titulo) => {
-      if (titulo.includes("Resultado")) {
-        return;
-      }
+Given("está na página da certificação {string}", (certificacao) => {
+  examesFasePage.paginaCertificacao();
+  examesFasePage.selecionarCertificacao(certificacao);
+});
 
-      const respondeuErrado = erradasRespondidas < quantidadeErradas;
-      const responder = respondeuErrado
-        ? examesFasePage.responderQuestaoIncorretamente(fase)
-        : examesFasePage.responderQuestaoCorretamente(fase);
+When("tentar acessar o Exame Final", () => {
+  exameFinalPage.tentarAcessarSimulado();
+});
 
-      return responder
-        .then(() => examesFasePage.clicarBotaoProximo())
-        .then(() =>
-          responderAteResultado(
-            fase,
-            quantidadeErradas,
-            erradasRespondidas + (respondeuErrado ? 1 : 0)
-          )
-        );
-    });
-}
+Then("o sistema não deve permitir o acesso ao Exame Final", () => {
+  exameFinalPage.semAcessoSimuladoFinal();
+});
 
-// funcao para validar 1 ponto por acerto, sem desconto por erro
-function validarNumQuestoesAcertadas() {
-  return examesFasePage.resultadoQuestoesAcertadas().should("equal", examesFasePage.numQuestoesAcertadas(nomeCenario));
-}
+Given("conclui todas as fases anteriores à última", () => {
+  exameFinalPage.completarFasesAprovandoExcetoUltima(examesFasePage.certificacaoAtual);
+});
 
-When("iniciar simulado final", () => {
-  examesFasePage.botaoIniciarSimuladoFinal().click()
-  cy.get("h1.font-bold").should("have.text", "Simulado Final")
-  examesFasePage.clicarIniciarQuiz()
-})
+When("conclui as fases anteriores e reprova na última", () => {
+  exameFinalPage.reprovarUltimaFase(examesFasePage.certificacaoAtual);
+});
 
-Then("validar que a página do exame final foi aberta e possui 40 questões", () => {
-  cy.get(".space-y-6").its("length").should("equal", 40)
-  cy.get("[role='radiogroup'] div.p-4").its("length").should("equal", 40*4)
-  exameFinalPage.exibirQuestaoCentroTela()
-})
+
+When("deixa um ou mais exames sem concluir", () => {
+  exameFinalPage.validaFaseNaoConcluida();
+});
+
+Given("concluiu 100% das fases da certificação", () => {
+  exameFinalPage.validarFasesConcluidas();
+});
+
+Given("foi aprovado em todos os exames de fase", () => {
+  exameFinalPage.validarAprovado();
+});
+
+When("iniciar o Exame Final", () => {
+  exameFinalPage.clicarIniciarExameFinal();
+  exameFinalPage.iniciarSimulado();
+});
+
+Then("as questões devem ser selecionadas a partir dos conteúdos de todas as fases da certificação", () => {
+  exameFinalPage.validarQuestoesContempladas(examesFasePage.certificacaoAtual);
+});
+
+Then("o sistema deve disponibilizar o tempo limite definido para a certificação selecionada", () => {
+  exameFinalPage.validaElementoCronometro();
+  exameFinalPage.validaTempo()
+});
+
+Given("iniciou o Exame Final", () => {
+  exameFinalPage.clicarIniciarExameFinal();
+  exameFinalPage.iniciarSimulado();
+});
+
+When("finalizar o exame com pontuação igual a 80%", () => {
+  exameFinalPage.responderSimuladoFinalPorPorcentagem(0.8);
+});
+
+Then("o sistema deve apresentar o resultado imediatamente", () => {
+  exameFinalPage.validarResultadoFinal();
+});
+
+Then("deve registrar a aprovação do aluno", () => {
+  exameFinalPage.validarAprovacaoFinal();
+});
