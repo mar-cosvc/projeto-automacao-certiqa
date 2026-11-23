@@ -35,7 +35,7 @@ When("finalizar o exame", () => {
     .click();
 })
 
-Then ("o sistema deve apresentar o {string} imediatamente com o {string}", (resultado, texto) => {
+Then("o sistema deve apresentar o {string} imediatamente com o {string}", (resultado, texto) => {
   exameFinalPage.mensagemResultadoExameFinal().should("have.text", resultado)
   exameFinalPage.textoResultadoExameFinal().should("contain.text", texto)
 })
