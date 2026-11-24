@@ -59,12 +59,12 @@ When("finaliza o exame", () => {
 });
 
 When("responde 70 por cento das questões corretamente", () => {
-  examesFasePage.responderQuestoesSetentaPorCento();
+  examesFasePage.responderQuestoesPercentual(0.7);
 });
 
 When("finaliza o exame com pontuação igual a 70 por cento", () => {
   examesFasePage.finalizarExame();
-  examesFasePage.finalizarExameCom70();
+  examesFasePage.finalizarExamePercentual(0.7);
 });
 
 When("finalizar o exame com pontuação inferior a 70 por cento", () => {
@@ -166,4 +166,13 @@ Then("validar Exame final disponibilizado para realização", () => {
   examesFasePage.statusCertificacao().should("have.text", "Pronto para Exame Final");
   examesFasePage.parabensFasesConcluidas().should("be.visible");
   examesFasePage.botaoIniciarSimuladoFinal().should("be.visible");
+});
+
+When("responde 80 por cento das questões corretamente", () => {
+  examesFasePage.responderQuestoesPercentual(0.8);
+});
+
+When("finaliza o exame com pontuação igual a 80 por cento", () => {
+  examesFasePage.finalizarExame();
+  examesFasePage.finalizarExamePercentual(0.8);
 });
