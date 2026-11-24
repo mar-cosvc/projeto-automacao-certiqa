@@ -1,59 +1,154 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { faker } from '@faker-js/faker/locale/pt_BR';
 
-// O plugin @badeball exporta Given, When e Then.
-// No Gherkin, "E" / "And" é só um atalho visual: o passo é mapeado pelo TEXTO, não pela palavra-chave.
-// Criamos este alias para o time reconhecer os passos "E" com mais facilidade.
 const And = Given;
 
+function emailFicticioUnico() {
+  return `certiqa.${Date.now()}.${faker.string.alphanumeric(8)}@exemplo.test`.toLowerCase();
+}
+
 Given("que eu estou na página inicial do CertiQA", () => {
-  // Abre a página inicial usando a baseUrl configurada em cypress.config.js
   cy.visit("/");
 });
 
 When("eu clico no botão ou link de cadastro", () => {
-  // Localize o seletor real na tela (DevTools do navegador ou Cypress Selector Playground)
-  // cy.contains("button", "Cadastro").click();
-  // cy.contains("a", "Cadastre-se").click();
+  cy.contains("button", "Cadastro").click();
 });
 
-And("preencho o campo de nome com {string}", (nome) => {
-  // O valor entre aspas no .feature chega automaticamente neste parâmetro
-  // cy.get('input[name="name"]').clear().type(nome);
-  // cy.get('input[placeholder="Digite seu nome"]').type(nome);
+And("preencho o campo de nome {string}", (nome) => {
+  cy.get('input[placeholder="Digite seu nome completo"]')
+    .clear();
+
+  if (nome.trim() !== "") {
+    cy.get('input[placeholder="Digite seu nome completo"]')
+      .type(nome);
+  }
 });
 
-And("preencho o campo de email com um email válido", () => {
-  // Gere um e-mail único para não colidir com cadastros já existentes
-  // const email = `aluno.qa.${Date.now()}@teste.com`;
-  // cy.get('input[type="email"]').clear().type(email);
-  // cy.get('input[placeholder="Digite seu e-mail"]').type(email);
-});
+And("preencho os demais campos com dados fictícios", () => {
+  const email = emailFicticioUnico();
+  const senha = "Qa1234";
 
-And("preencho o campo de senha com {string}", (senha) => {
-  // cy.get('input[type="password"]').clear().type(senha);
-  // cy.get('input[placeholder="Digite sua senha"]').type(senha);
+  cy.get('input[placeholder="Digite seu e-mail"]')
+    .clear()
+    .type(email, { log: false });
+
+  cy.get('input[placeholder="Digite sua senha"]')
+    .clear()
+    .type(senha, { log: false });
+
+  cy.get('input[placeholder="Confirme sua senha"]')
+    .clear()
+    .type(senha, { log: false });
 });
 
 And("clico no botão de finalizar cadastro", () => {
-  // cy.contains("button", "Cadastrar").click();
-  // cy.get('button[type="submit"]').click();
+  cy.contains("button", "Cadastrar").click();
 });
 
-And("deixo o campo de email em branco", () => {
-  // Garante que o campo existe e permanece vazio
-  // cy.get('input[type="email"]').clear();
+Then("devo ver a mensagem {string}", (mensagem) => {
+  cy.contains("div", mensagem).should("be.visible");
 });
 
-Then("devo ver uma mensagem de sucesso ou ser direcionado para o painel do usuário", () => {
-  // Ajuste o seletor/URL conforme o comportamento real da aplicação
-  // cy.contains("Cadastro realizado").should("be.visible");
-  // cy.url().should("include", "/painel");
+And("preencho o campo de nome com dados fictícios", () => {
+  const nome = faker.person.fullName();
+
+  cy.get('input[placeholder="Digite seu nome completo"]')
+    .clear()
+    .type(nome);
 });
 
-Then("o sistema deve exibir um alerta informando que o email é obrigatório", () => {
-  // Pode ser mensagem na tela, texto de validação HTML ou tooltip
-  // cy.contains(/e-?mail.*(obrigatório|necessário)/i).should("be.visible");
-  // cy.get('input[type="email"]').then(($input) => {
-  //   expect($input[0].validationMessage).to.not.eq("");
-  // });
+And("preencho o campo de email {string}", (email) => {
+  cy.get('input[placeholder="Digite seu e-mail"]')
+    .clear();
+
+  if (email.trim() !== "") {
+    cy.get('input[placeholder="Digite seu e-mail"]')
+      .type(email, { log: false });
+  }
+});
+
+Then("o campo de email deve indicar um formato inválido", () => {
+  cy.get('input[placeholder="Digite seu e-mail"]')
+    .should(($input) => {
+      expect($input[0].checkValidity()).to.be.false;
+      expect($input[0].validity.typeMismatch).to.be.true;
+    });
+});
+
+And("preencho o campo de senha {string}", (senha) => {
+  cy.get('input[placeholder="Digite sua senha"]')
+    .type(senha, { log: false });
+});
+
+And("preencho o campo de confirmar senha {string}", (senha) => {
+  cy.get('input[placeholder="Confirme sua senha"]')
+    .type(senha, { log: false });
+});
+
+And("preencho o campo de email com dados fictícios", () => {
+  const email = emailFicticioUnico();
+
+  cy.get('input[placeholder="Digite seu e-mail"]')
+    .clear()
+    .type(email, { log: false });
+});
+
+And("preencho o campo de senha com dados fictícios", () => {
+  const senha = "123456";
+
+  cy.get('input[placeholder="Digite sua senha"]')
+    .clear()
+    .type(senha, { log: false });
+});
+
+And("preencho o campo de email com e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const email = perfil.email;
+
+    if (typeof email !== "string" || !email.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.email" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Digite seu e-mail"]')
+      .clear()
+      .type(email, { log: false });
+  });
+});
+
+And("preencho o campo de senha com a senha do e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const password = perfil.password;
+
+    if (typeof password !== "string" || !password.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.password" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Digite sua senha"]')
+      .clear()
+      .type(password, { log: false });
+  });
+});
+
+And("preencho o campo de confirmar senha com a senha do e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const password = perfil.password;
+
+    if (typeof password !== "string" || !password.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.password" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Confirme sua senha"]')
+      .clear()
+      .type(password, { log: false });
+  });
 });
