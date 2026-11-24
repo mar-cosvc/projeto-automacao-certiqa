@@ -43,3 +43,9 @@ Then("devo ser redirecionado para a página inicial do CertiQA", () => {
   cy.url().should("eq", `${Cypress.config("baseUrl")}painel`);
   cy.contains("div", "Login bem-sucedido").should("be.visible");
 });
+
+Then("a home deve exibir opções de acesso", () => {
+  cy.url().should("eq", Cypress.config("baseUrl"));
+  cy.contains("button", "Login").should("be.visible");
+  cy.contains("button", "Cadastro").should("be.visible");
+});

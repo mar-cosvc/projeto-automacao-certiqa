@@ -6,7 +6,16 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "cypress run"
+    "test": "cypress run",
+    "test:static": "node scripts/audit-gherkin-steps.mjs",
+    "test:unit": "node --test tests/regras_aprovacao.test.mjs",
+    "test:smoke": "cypress run --spec cypress/e2e/features/smoke_readonly.feature",
+    "test:login": "cypress run --spec cypress/e2e/features/login.feature",
+    "test:cadastro": "cypress run --spec cypress/e2e/features/cadastro.feature",
+    "test:fases": "cypress run --spec cypress/e2e/features/exames_fase.feature",
+    "test:final": "cypress run --spec cypress/e2e/features/exame_final.feature",
+    "test:all": "node scripts/run-suite.mjs",
+    "check:env": "node scripts/check-env.mjs"
   },
   "keywords": [
     "cypress",
@@ -35,5 +44,8 @@
       "diff": "^8.0.3",
       "serialize-javascript": "^7.0.5"
     }
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
