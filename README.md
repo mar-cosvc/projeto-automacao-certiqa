@@ -169,10 +169,16 @@ npm run test:all
 Com autorização (após combinar contas no time):
 
 ```powershell
+$env:NODE_OPTIONS = "--use-system-ca"   # Windows: evita UNABLE_TO_VERIFY_LEAF_SIGNATURE
 $env:CERTIQA_ALLOW_AUTH = "1"
 $env:CERTIQA_ALLOW_MUTATING = "1"
+$env:CERTIQA_MASS_CONFIRMED = "1"     # somente após validar estados dos perfis
+npm run check:env -- --reject-placeholders
 npm run test:all
 ```
+
+Pré-condições detalhadas: [`docs/PRECONDICOES-E2E.md`](docs/PRECONDICOES-E2E.md).
+Os comandos `test:login` / `test:cadastro` / `test:fases` / `test:final` passam por `scripts/guard-stage.mjs` (não contornam as flags).
 
 Interface visual:
 
