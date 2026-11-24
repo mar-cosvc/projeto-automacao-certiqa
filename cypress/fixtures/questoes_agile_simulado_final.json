@@ -1,0 +1,202 @@
+{
+    "questao 1 de 40": {
+        "pergunta": "Em desenvolvimento ágil, quando os testes devem começar?",
+        "resposta-correta": "Desde o início do projeto",
+        "explicacao": "No desenvolvimento ágil, as atividades de teste começam desde o início do projeto (como na definição de histórias de usuário e critérios de aceite) e ocorrem continuamente ao longo de cada iteração."
+    },
+    "questao 2 de 40": {
+        "pergunta": "Qual é a principal responsabilidade de um testador ágil?",
+        "resposta-correta": "Facilitador de qualidade",
+        "explicacao": "Em equipes ágeis, a qualidade é responsabilidade de todo o time, e o testador atua como um facilitador de qualidade, apoiando a equipe em práticas, testes e prevenção de defeitos."
+    },
+    "questao 3 de 40": {
+        "pergunta": "Como debriefing beneficia sessões exploratórias?",
+        "resposta-correta": "Captura aprendizados e planeja próximos passos",
+        "explicacao": "O debriefing consiste na revisão dos resultados da sessão exploratória entre o testador e partes interessadas para consolidar aprendizados, avaliar a cobertura e planejar os próximos passos."
+    },
+    "questao 4 de 40": {
+        "pergunta": "Qual característica define desenvolvimento iterativo e incremental?",
+        "resposta-correta": "Funcionalidades em ciclos curtos e frequentes",
+        "explicacao": "O desenvolvimento iterativo e incremental entrega partes funcionais do software em ciclos curtos e frequentes, permitindo feedback contínuo e evolução gradual do produto."
+    },
+    "questao 5 de 40": {
+        "pergunta": "Como o testador ágil atua como defensor do usuário?",
+        "resposta-correta": "Representa perspectivas dos usuários finais",
+        "explicacao": "Atuar como defensor do usuário envolve representar a perspectiva do cliente e da experiência de uso durante o desenvolvimento e os testes (entre as opções apresentadas, é a única que não nega ou distorce o papel do testador)."
+    },
+    "questao 6 de 40": {
+        "pergunta": "Qual diferença entre teste tradicional e ágil em relação à documentação?",
+        "resposta-correta": "Documentação mínima e essencial",
+        "explicacao": "Em contextos ágeis, prioriza-se documentação leve, mínima e suficiente ('just barely good enough'), em vez de documentos extensos e rígidos típicos de abordagens tradicionais."
+    },
+    "questao 7 de 40": {
+        "pergunta": "O que é Integração Contínua?",
+        "resposta-correta": "Integração frequente com builds e testes automáticos",
+        "explicacao": "A Integração Contínua (CI) é a prática de integrar alterações de código frequentemente no repositório principal, disparando builds e testes automatizados para detectar problemas rapidamente."
+    },
+    "questao 8 de 40": {
+        "pergunta": "Qual estrutura da linguagem Gherkin?",
+        "resposta-correta": "Given-When-Then",
+        "explicacao": "A linguagem Gherkin utiliza palavras-chave como Dado/Quando/Então (Given-When-Then) para descrever cenários de comportamento de forma estruturada e legível."
+    },
+    "questao 9 de 40": {
+        "pergunta": "Qual é o objetivo principal do Planning Poker?",
+        "resposta-correta": "Obter consenso através de discussão colaborativa",
+        "explicacao": "O Planning Poker é uma técnica de estimativa baseada em consenso que estimula a discussão entre os membros da equipe para alinhar entendimentos sobre esforço e complexidade."
+    },
+    "questao 10 de 40": {
+        "pergunta": "Qual característica das equipes multifuncionais?",
+        "resposta-correta": "Todas as habilidades necessárias para entregar valor",
+        "explicacao": "Equipes multifuncionais (cross-functional) reúnem internamente todas as competências necessárias (análise, desenvolvimento, teste, etc.) para entregar incrementos prontos e de valor."
+    },
+    "questao 11 de 40": {
+        "pergunta": "O que caracteriza a Pirâmide de Testes?",
+        "resposta-correta": "Muitos testes unitários, poucos de interface",
+        "explicacao": "A Pirâmide de Testes propõe uma base ampla de testes unitários rápidos e isolados, uma camada intermediária de integração/serviço e um topo menor de testes de interface (UI), mais lentos e custosos."
+    },
+    "questao 12 de 40": {
+        "pergunta": "O que significa \"customer collaboration over contract negotiation\"?",
+        "resposta-correta": "Trabalhar colaborativamente com clientes",
+        "explicacao": "Esse valor do Manifesto Ágil destaca a importância da parceria contínua e da colaboração próxima com o cliente ao longo do projeto, em vez de depender apenas de negociações contratuais rígidas."
+    },
+    "questao 13 de 40": {
+        "pergunta": "O que caracteriza equipes auto-organizadas em métodos ágeis?",
+        "resposta-correta": "São multifuncionais com autonomia",
+        "explicacao": "Equipes auto-organizadas têm autonomia para decidir como organizar e executar o próprio trabalho de forma colaborativa para atingir os objetivos da iteração."
+    },
+    "questao 14 de 40": {
+        "pergunta": "Como teste exploratório se adapta?",
+        "resposta-correta": "Adapta estratégia baseado em descobertas",
+        "explicacao": "No teste exploratório, o testador ajusta continuamente sua estratégia, hipóteses e próximos testes com base no que aprende e descobre durante a exploração do sistema."
+    },
+    "questao 15 de 40": {
+        "pergunta": "O que diferencia especialistas separados de equipe integrada?",
+        "resposta-correta": "Testadores são parte integrada da equipe",
+        "explicacao": "Em uma equipe ágil integrada, os testadores fazem parte do mesmo time multidisciplinar desde o início, colaborando diariamente, em vez de atuarem como um departamento isolado no fim do ciclo."
+    },
+    "questao 16 de 40": {
+        "pergunta": "O conceito \"working software over comprehensive documentation\" significa:",
+        "resposta-correta": "Valorizar software funcionando mais que documentação extensa",
+        "explicacao": "Esse princípio do Manifesto Ágil indica que entregar software funcional que atenda ao usuário tem prioridade maior do que produzir documentação exaustiva, sem significar ausência total de documentação."
+    },
+    "questao 17 de 40": {
+        "pergunta": "Qual dos seguintes valores do Manifesto Ágil é mais relevante para os testadores?",
+        "resposta-correta": "Indivíduos e interações mais que processos e ferramentas",
+        "explicacao": "A colaboração constante entre testadores, desenvolvedores e product owners é essencial no contexto ágil, tornando 'indivíduos e interações mais que processos e ferramentas' central para a qualidade."
+    },
+    "questao 18 de 40": {
+        "pergunta": "O que é Session-Based Testing?",
+        "resposta-correta": "Teste exploratório estruturado com missão e time-box",
+        "explicacao": "O Session-Based Testing (SBT) estrutura o teste exploratório em sessões com tempo determinado (time-box), uma missão clara e um registro/debriefing posterior."
+    },
+    "questao 19 de 40": {
+        "pergunta": "Qual é o papel do testador em retrospectivas?",
+        "resposta-correta": "Contribui com insights sobre qualidade",
+        "explicacao": "Nas retrospectivas, o testador contribui com observações sobre qualidade, falhas encontradas, gargalos de teste e melhorias de processo para as próximas iterações."
+    },
+    "questao 20 de 40": {
+        "pergunta": "Qual benefício principal do TDD?",
+        "resposta-correta": "Melhor design e documentação viva",
+        "explicacao": "O Test-Driven Development (TDD) ajuda a produzir código mais modular e bem desenhado, além de manter um conjunto de testes automatizados que atua como documentação viva do comportamento esperado."
+    },
+    "questao 21 de 40": {
+        "pergunta": "Como ATDD melhora colaboração?",
+        "resposta-correta": "Promove colaboração desde o início",
+        "explicacao": "O Acceptance Test-Driven Development (ATDD) reúne negócio, desenvolvimento e teste antes da codificação para definir critérios de aceite e testes de aceitação em conjunto."
+    },
+    "questao 22 de 40": {
+        "pergunta": "O que caracteriza responsabilidade compartilhada pela qualidade?",
+        "resposta-correta": "Toda equipe é responsável pela qualidade",
+        "explicacao": "Na responsabilidade compartilhada pela qualidade (whole-team approach), todos os membros da equipe — e não apenas os testadores — contribuem para construir e manter a qualidade do produto."
+    },
+    "questao 23 de 40": {
+        "pergunta": "O que é Pair Testing?",
+        "resposta-correta": "Dois testadores colaborando e compartilhando conhecimento",
+        "explicacao": "Pair Testing é uma prática colaborativa em que duas pessoas trabalham juntas no mesmo terminal/tarefa (frequentemente um testador com outro testador ou desenvolvedor) para testar, trocar ideias e encontrar mais defeitos."
+    },
+    "questao 24 de 40": {
+        "pergunta": "Qual importância das Daily Standup meetings?",
+        "resposta-correta": "Mantêm alinhamento e identificam impedimentos",
+        "explicacao": "As reuniões diárias (Daily Standups) sincronizam o progresso diário da equipe em direção à meta da iteração e evidenciam impedimentos que precisam ser resolvidos."
+    },
+    "questao 25 de 40": {
+        "pergunta": "Qual papel das ferramentas de colaboração?",
+        "resposta-correta": "Facilitam comunicação e visibilidade do trabalho",
+        "explicacao": "Ferramentas colaborativas (como quadros de tarefas, wikis e chats) apoiam a comunicação contínua e tornam o status das histórias, testes e defeitos visível para todos."
+    },
+    "questao 26 de 40": {
+        "pergunta": "Qual vantagem do BDD?",
+        "resposta-correta": "Cria linguagem comum entre técnicos e negócio",
+        "explicacao": "O Behavior-Driven Development (BDD) utiliza uma linguagem ubíqua e acessível para alinhar stakeholders de negócio, desenvolvedores e testadores sobre o comportamento esperado do sistema."
+    },
+    "questao 27 de 40": {
+        "pergunta": "O que são Story Points?",
+        "resposta-correta": "Medida relativa de esforço baseada em complexidade",
+        "explicacao": "Story Points representam uma estimativa relativa do esforço necessário para concluir uma história de usuário, considerando fatores como complexidade, volume de trabalho e incerteza."
+    },
+    "questao 28 de 40": {
+        "pergunta": "Como funciona o planejamento em múltiplos níveis?",
+        "resposta-correta": "Planejamento de release, iteração e diário",
+        "explicacao": "O planejamento ágil ocorre em diferentes horizontes temporais, como release (visão mais ampla), iteração/sprint e acompanhamento diário, permitindo ajustes contínuos."
+    },
+    "questao 29 de 40": {
+        "pergunta": "O que são retrospectivas de sprint?",
+        "resposta-correta": "Reuniões para refletir e identificar melhorias",
+        "explicacao": "A retrospectiva da sprint é uma reunião recorrente da equipe para analisar o que funcionou bem, o que pode melhorar e definir ações práticas para a próxima iteração."
+    },
+    "questao 30 de 40": {
+        "pergunta": "Qual é o ciclo do TDD?",
+        "resposta-correta": "Red-Green-Refactor",
+        "explicacao": "O ciclo clássico do TDD segue os passos Red (escrever um teste que falha), Green (escrever o código mínimo para passar) e Refactor (refatorar o código mantendo os testes passando)."
+    },
+    "questao 31 de 40": {
+        "pergunta": "Como dashboards de qualidade ajudam equipes ágeis?",
+        "resposta-correta": "Fornecem visibilidade para decisões baseadas em dados",
+        "explicacao": "Dashboards centralizam métricas relevantes (como execução de testes, cobertura e defeitos), oferecendo transparência para que a equipe tome decisões informadas sobre qualidade e liberação."
+    },
+    "questao 32 de 40": {
+        "pergunta": "Em equipes ágeis, qual é a importância da comunicação face a face?",
+        "resposta-correta": "Resolve problemas rapidamente e mantém alinhamento",
+        "explicacao": "A comunicação direta (presencial ou por chamada de vídeo/voz em tempo real) reduz ambiguidades, esclarece dúvidas rapidamente e mantém a equipe alinhada."
+    },
+    "questao 33 de 40": {
+        "pergunta": "Como testadores ágeis lidam com mudanças de requisitos?",
+        "resposta-correta": "Abraçam mudanças como oportunidades",
+        "explicacao": "Em ambientes ágeis, mudanças de requisitos são esperadas para agregar maior valor ao negócio; o testador ágil adapta testes e prioridades de forma proativa."
+    },
+    "questao 34 de 40": {
+        "pergunta": "O que são critérios de aceite em ATDD?",
+        "resposta-correta": "Condições que devem ser atendidas para aceitar funcionalidade",
+        "explicacao": "Critérios de aceite definem as condições e comportamentos necessários para que uma funcionalidade ou história de usuário seja considerada pronta e aceita."
+    },
+    "questao 35 de 40": {
+        "pergunta": "Como Risk-Based Testing otimiza esforços?",
+        "resposta-correta": "Foca em áreas de maior risco e impacto",
+        "explicacao": "O teste baseado em risco (Risk-Based Testing) prioriza e concentra os esforços de teste nas funcionalidades e componentes com maior probabilidade e impacto de falha."
+    },
+    "questao 36 de 40": {
+        "pergunta": "O que é documentação executável em BDD?",
+        "resposta-correta": "Especificações que servem como documentação e testes",
+        "explicacao": "Na documentação executável (living documentation), especificações escritas em formato legível são automatizadas e executadas como testes, mantendo a documentação sincronizada com o sistema."
+    },
+    "questao 37 de 40": {
+        "pergunta": "Como estimativas ágeis diferem de tradicionais?",
+        "resposta-correta": "Usam técnicas colaborativas e medidas relativas",
+        "explicacao": "Estimativas ágeis costumam ser construídas de forma colaborativa pela equipe e baseadas em medidas relativas (como Story Points), em vez de estimativas individuais detalhadas em horas fixas feitas no início."
+    },
+    "questao 38 de 40": {
+        "pergunta": "Quem são os \"Three Amigos\" em ATDD?",
+        "resposta-correta": "Product Owner, Developer, Tester",
+        "explicacao": "Os 'Three Amigos' (Três Amigos) representam as perspectivas de negócio/produto (Product Owner), desenvolvimento (Developer) e teste/qualidade (Tester) alinhando requisitos e critérios antes da implementação."
+    },
+    "questao 39 de 40": {
+        "pergunta": "Qual importância da refatoração no TDD?",
+        "resposta-correta": "Melhora qualidade mantendo funcionalidade",
+        "explicacao": "A refatoração no TDD melhora a estrutura interna, legibilidade e manutenibilidade do código sem alterar seu comportamento externo, com a segurança da suíte de testes existente."
+    },
+    "questao 40 de 40": {
+        "pergunta": "O que caracteriza teste exploratório?",
+        "resposta-correta": "Combina aprendizado, design e execução simultaneamente",
+        "explicacao": "O teste exploratório caracteriza-se pela realização simultânea de aprendizado sobre o produto, desenho de testes e execução, guiada pela observação e raciocínio do testador."
+    }
+}
