@@ -11,7 +11,5 @@ Então o formulário de login deve ser exibido
 
 Cenário: Login com sucesso
 Dado que estou na página de login
-Quando preencho o campo E-mail com "tisita1276@caps7.com"
-E preencho o campo Senha com "123456"
-E clico no botão Entrar
+Quando faço login com as credenciais configuradas
 Então devo ser redirecionado para a página inicial do CertiQA

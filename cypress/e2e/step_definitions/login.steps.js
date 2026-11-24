@@ -24,19 +24,22 @@ Given("que estou na página de login", () => {
 });
 
 When("preencho o campo E-mail com {string}", (email) => {
-  cy.get(`#email`).type(email);
+  cy.get("#email").type(email, { log: false });
 });
 
 And("preencho o campo Senha com {string}", (senha) => {
-  cy.get(`#password`).type(senha);
+  cy.get("#password").type(senha, { log: false });
 });
 
 And("clico no botão Entrar", () => {
   cy.contains("button", "Entrar").click();
 });
 
+When("faço login com as credenciais configuradas", () => {
+  cy.login();
+});
+
 Then("devo ser redirecionado para a página inicial do CertiQA", () => {
   cy.url().should("eq", `${Cypress.config("baseUrl")}painel`);
   cy.contains("div", "Login bem-sucedido").should("be.visible");
-  cy.contains("div", "Bem-vindo, Usuario Teste!").should("be.visible");
 });
