@@ -10,7 +10,7 @@ Before(({ pickle }) => {
 });
 
 Given("que o aluno está logado no sistema", () => {
-  // examesFasePage.login();
+  // Mass Factory: perfil "login" (contas de fase reutilizáveis com estado validado)
   cy.login();
 });
 

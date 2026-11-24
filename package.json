@@ -8,7 +8,7 @@
     "cy:run": "cypress run",
     "test": "cypress run",
     "test:static": "node scripts/audit-gherkin-steps.mjs",
-    "test:unit": "node --test tests/regras_aprovacao.test.mjs tests/suite-gates.test.mjs tests/check-env-placeholders.test.mjs",
+    "test:unit": "node --test tests/regras_aprovacao.test.mjs tests/suite-gates.test.mjs tests/check-env-placeholders.test.mjs tests/mass-factory.test.mjs tests/g6-r2-cypress16.test.mjs",
     "test:smoke": "cypress run --spec cypress/e2e/features/smoke_readonly.feature",
     "test:login": "node scripts/guard-stage.mjs login && cypress run --spec cypress/e2e/features/login.feature",
     "test:cadastro": "node scripts/guard-stage.mjs cadastro && cypress run --spec cypress/e2e/features/cadastro.feature",

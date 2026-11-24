@@ -36,6 +36,7 @@ And("clico no botão Entrar", () => {
 });
 
 When("faço login com as credenciais configuradas", () => {
+  // Mass Factory / perfis: cy.login() → perfil lógico "login" via cy.env()
   cy.login();
 });
 
