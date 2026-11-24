@@ -158,11 +158,20 @@ describe("processExitFromCounts", () => {
 });
 
 describe("precheckFlagsForStage", () => {
-  it("cadastro exige emailJaCadastrado", () => {
-    assert.ok(
-      precheckFlagsForStage("cadastro").includes(
-        "--require-email-ja-cadastrado"
-      )
+  it("cadastro exige emailJaCadastrado e emailDomain", () => {
+    const flags = precheckFlagsForStage("cadastro");
+    assert.ok(flags.includes("--require-email-ja-cadastrado"));
+    assert.ok(flags.includes("--require-email-domain"));
+    assert.ok(flags.includes("--reject-placeholders"));
+  });
+  it("login e final não exigem emailDomain", () => {
+    assert.equal(
+      precheckFlagsForStage("login").includes("--require-email-domain"),
+      false
+    );
+    assert.equal(
+      precheckFlagsForStage("final").includes("--require-email-domain"),
+      false
     );
   });
   it("final exige profiles", () => {

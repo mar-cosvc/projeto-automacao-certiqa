@@ -132,7 +132,11 @@ export function precheckFlagsForStage(stageId) {
     case "login":
       return ["--require-auth", "--reject-placeholders"];
     case "cadastro":
-      return ["--require-email-ja-cadastrado", "--reject-placeholders"];
+      return [
+        "--require-email-ja-cadastrado",
+        "--require-email-domain",
+        "--reject-placeholders",
+      ];
     case "fases":
       return ["--require-auth", "--reject-placeholders"];
     case "final":

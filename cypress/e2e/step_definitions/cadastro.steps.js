@@ -1,5 +1,6 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import {
+  criarEstadoCenarioCadastro,
   gerarMassaCadastroPositiva,
   gerarNomeCompleto,
   gerarEmailUnico,
@@ -9,6 +10,32 @@ import {
 import { carregarCredenciais } from "../../support/data/perfis.mjs";
 
 const And = Given;
+
+/** Estado isolado por cenário — senha fictícia do fluxo de e-mail já cadastrado. */
+const estadoCenario = criarEstadoCenarioCadastro();
+
+Before(() => {
+  estadoCenario.limpar();
+});
+
+/**
+ * Cypress 16: domínio autorizado via cy.env([...]), passado às funções puras.
+ * @returns {Cypress.Chainable<string>}
+ */
+function resolverDominioEmail() {
+  return cy.env(["emailDomain"]).then((env) => {
+    const dominio = String(env.emailDomain || "")
+      .trim()
+      .replace(/^@/, "");
+    if (!dominio) {
+      throw new Error(
+        'Domínio de e-mail não configurado. Defina "emailDomain" em cypress.env.json ' +
+          "(domínio autorizado pelo time). Não assuma que @exemplo.test será aceito pelo backend."
+      );
+    }
+    return dominio;
+  });
+}
 
 Given("que eu estou na página inicial do CertiQA", () => {
   cy.visit("/");
@@ -27,19 +54,21 @@ And("preencho o campo de nome {string}", (nome) => {
 });
 
 And("preencho os demais campos com dados fictícios", () => {
-  const { email, senha } = gerarMassaCadastroPositiva();
+  resolverDominioEmail().then((dominio) => {
+    const { email, senha } = gerarMassaCadastroPositiva({ dominio });
 
-  cy.get('input[placeholder="Digite seu e-mail"]')
-    .clear()
-    .type(email, { log: false });
+    cy.get('input[placeholder="Digite seu e-mail"]')
+      .clear()
+      .type(email, { log: false });
 
-  cy.get('input[placeholder="Digite sua senha"]')
-    .clear()
-    .type(senha, { log: false });
+    cy.get('input[placeholder="Digite sua senha"]')
+      .clear()
+      .type(senha, { log: false });
 
-  cy.get('input[placeholder="Confirme sua senha"]')
-    .clear()
-    .type(senha, { log: false });
+    cy.get('input[placeholder="Confirme sua senha"]')
+      .clear()
+      .type(senha, { log: false });
+  });
 });
 
 And("clico no botão de finalizar cadastro", () => {
@@ -86,11 +115,13 @@ And("preencho o campo de confirmar senha {string}", (senha) => {
 });
 
 And("preencho o campo de email com dados fictícios", () => {
-  const email = gerarEmailUnico();
+  resolverDominioEmail().then((dominio) => {
+    const email = gerarEmailUnico({ dominio });
 
-  cy.get('input[placeholder="Digite seu e-mail"]')
-    .clear()
-    .type(email, { log: false });
+    cy.get('input[placeholder="Digite seu e-mail"]')
+      .clear()
+      .type(email, { log: false });
+  });
 });
 
 And("preencho o campo de senha com dados fictícios", () => {
@@ -111,8 +142,7 @@ And("preencho o campo de email com e-mail já cadastrado", () => {
 
 // Duplicidade é validada pelo e-mail. Senha/confirmação: fictícias iguais (Mass Factory).
 And("preencho o campo de senha com a senha do e-mail já cadastrado", () => {
-  const senha = gerarSenhaValida();
-  Cypress.env("_massaSenhaEmailJa", senha);
+  const senha = estadoCenario.guardarSenhaDuplicidade(gerarSenhaValida());
   cy.get('input[placeholder="Digite sua senha"]')
     .clear()
     .type(senha, { log: false });
@@ -121,8 +151,7 @@ And("preencho o campo de senha com a senha do e-mail já cadastrado", () => {
 And(
   "preencho o campo de confirmar senha com a senha do e-mail já cadastrado",
   () => {
-    const senha = Cypress.env("_massaSenhaEmailJa") || gerarSenhaValida();
-    Cypress.env("_massaSenhaEmailJa", senha);
+    const senha = estadoCenario.obterSenhaDuplicidade();
     cy.get('input[placeholder="Confirme sua senha"]')
       .clear()
       .type(senha, { log: false });

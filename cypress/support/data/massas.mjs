@@ -2,8 +2,10 @@
  * Mass Factory — geração centralizada de dados fictícios para BDD/Cypress.
  * Analogia: Page Object encapsula a UI; Mass Factory encapsula a massa.
  *
- * Não contém credenciais reais. Domínio de e-mail para cadastro persistido
- * deve ser autorizado (cypress.env.json → emailDomain ou opts.dominio).
+ * Funções puras: sem dependência do objeto `cy` / Cypress.env.
+ * Domínio de e-mail para cadastro persistido deve ser passado explicitamente
+ * ({ dominio }) ou via CERTIQA_EMAIL_DOMAIN (unitários Node).
+ * Nos steps Cypress, o domínio vem de cy.env(["emailDomain"]).
  */
 
 import { faker } from "@faker-js/faker/locale/pt_BR";
@@ -18,28 +20,20 @@ export function obterDominioEmail(opts = {}) {
   const direto = opts.dominio && String(opts.dominio).trim();
   if (direto) return direto.replace(/^@/, "");
 
-  let fromCypress;
-  try {
-    if (typeof Cypress !== "undefined" && typeof Cypress.env === "function") {
-      fromCypress = Cypress.env("emailDomain");
-    }
-  } catch {
-    // ambiente Node / unitário
-  }
-
   const fromProcess =
     typeof process !== "undefined" && process.env
       ? process.env.CERTIQA_EMAIL_DOMAIN
       : undefined;
 
-  const dominio = String(fromCypress || fromProcess || "")
+  const dominio = String(fromProcess || "")
     .trim()
     .replace(/^@/, "");
 
   if (!dominio) {
     throw new Error(
       'Domínio de e-mail não configurado. Defina "emailDomain" em cypress.env.json ' +
-        "(domínio autorizado pelo time) ou passe { dominio: '...' } / CERTIQA_EMAIL_DOMAIN. " +
+        "(domínio autorizado pelo time) e passe { dominio } a partir de cy.env([\"emailDomain\"]), " +
+        "ou use CERTIQA_EMAIL_DOMAIN nos unitários. " +
         "Não assuma que @exemplo.test será aceito pelo backend."
     );
   }
@@ -130,4 +124,42 @@ export function gerarLoteEmailsUnicos(quantidade, opts = {}) {
     set.add(gerarEmailUnico(opts));
   }
   return [...set];
+}
+
+/**
+ * Estado temporário isolado por cenário (senha fictícia de duplicidade).
+ * Não usa Cypress.env / cy.env para gravar senha.
+ */
+export function criarEstadoCenarioCadastro() {
+  /** @type {string|null} */
+  let senhaDuplicidade = null;
+
+  return {
+    limpar() {
+      senhaDuplicidade = null;
+    },
+    /**
+     * @param {string} senha
+     * @returns {string}
+     */
+    guardarSenhaDuplicidade(senha) {
+      const s = String(senha || "");
+      if (s.length < 6) {
+        throw new Error("Senha fictícia de duplicidade inválida (< 6 caracteres).");
+      }
+      senhaDuplicidade = s;
+      return s;
+    },
+    /**
+     * @returns {string}
+     */
+    obterSenhaDuplicidade() {
+      if (senhaDuplicidade == null) {
+        throw new Error(
+          "Senha temporária de duplicidade ausente — preencha a senha antes da confirmação no mesmo cenário."
+        );
+      }
+      return senhaDuplicidade;
+    },
+  };
 }

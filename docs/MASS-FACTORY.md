@@ -31,8 +31,11 @@ Cenário Gherkin
 ```js
 import { gerarMassaCadastroPositiva } from "../../support/data/massas.mjs";
 
-const { nome, email, senha } = gerarMassaCadastroPositiva();
-// exige emailDomain em cypress.env.json (domínio autorizado)
+// Cypress 16: domínio via cy.env — funções da Mass Factory permanecem puras.
+cy.env(["emailDomain"]).then((env) => {
+  const dominio = String(env.emailDomain || "").trim().replace(/^@/, "");
+  const { nome, email, senha } = gerarMassaCadastroPositiva({ dominio });
+});
 ```
 
 Configure no `cypress.env.json` local (não versionado):

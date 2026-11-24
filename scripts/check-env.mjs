@@ -9,15 +9,20 @@ import path from "node:path";
  *   node scripts/check-env.mjs --require-auth
  *   node scripts/check-env.mjs --require-profiles
  *   node scripts/check-env.mjs --require-email-ja-cadastrado
+ *   node scripts/check-env.mjs --require-email-domain
  *   node scripts/check-env.mjs --reject-placeholders
  *   node scripts/check-env.mjs --json
  *
  * Com --reject-placeholders + flags --require-*:
- *   rejeita placeholders somente da união dos perfis exigidos.
+ *   rejeita placeholders somente da união dos perfis/campos exigidos.
  * Com --reject-placeholders isolado:
  *   validação global (qualquer placeholder conhecido bloqueia).
+ * --require-email-domain (Cadastro):
+ *   exige domínio presente, sintaticamente válido e não-placeholder.
+ *   Não bloqueia Login / Exame Final por ausência de emailDomain.
  * Campos opcionais para a etapa ainda entram no diagnóstico (avisos),
  * mas não bloqueiam.
+ * Domínio configurado ≠ autorização de execução mutável.
  */
 
 const args = new Set(process.argv.slice(2));
@@ -25,6 +30,7 @@ const asJson = args.has("--json");
 const requireAuth = args.has("--require-auth");
 const requireProfiles = args.has("--require-profiles");
 const requireEmailJa = args.has("--require-email-ja-cadastrado");
+const requireEmailDomain = args.has("--require-email-domain");
 const rejectPlaceholders = args.has("--reject-placeholders");
 
 const envPath = path.resolve("cypress.env.json");
@@ -43,6 +49,8 @@ const result = {
   formatOk: false,
   hasFlatCredentials: false,
   hasEmailDomain: false,
+  emailDomainValid: false,
+  emailDomainPlaceholder: false,
   profiles: {
     alunoCompleto: false,
     alunoFasePendente: false,
@@ -93,6 +101,35 @@ function looksLikePlaceholder(email, password) {
 }
 
 /**
+ * Domínio de e-mail sintaticamente válido (FQDN simples, sem @user).
+ * @param {string} raw
+ */
+function isValidEmailDomain(raw) {
+  const d = String(raw || "")
+    .trim()
+    .replace(/^@/, "");
+  if (!d || d.length > 253) return false;
+  return /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i.test(
+    d
+  );
+}
+
+/**
+ * Placeholders documentados de emailDomain (example / legado).
+ * @param {string} raw
+ */
+function isPlaceholderEmailDomain(raw) {
+  const d = String(raw || "")
+    .trim()
+    .replace(/^@/, "")
+    .toLowerCase();
+  if (!d) return false;
+  if (d === "exemplo.test" || d.endsWith(".exemplo.test")) return true;
+  if (d === "dominio-autorizado.do.time") return true;
+  return false;
+}
+
+/**
  * Escopo de campos cujo placeholder bloqueia com --reject-placeholders.
  * - Sem flags --require-*: "all" (rigor global).
  * - Com uma ou mais --require-*: união dos campos exigidos.
@@ -101,7 +138,8 @@ function looksLikePlaceholder(email, password) {
  */
 function placeholderBlockScope() {
   if (!rejectPlaceholders) return null;
-  const anyRequire = requireAuth || requireProfiles || requireEmailJa;
+  const anyRequire =
+    requireAuth || requireProfiles || requireEmailJa || requireEmailDomain;
   if (!anyRequire) return "all";
 
   const fields = new Set();
@@ -112,6 +150,7 @@ function placeholderBlockScope() {
     fields.add("alunoReprovado");
   }
   if (requireEmailJa) fields.add("emailJaCadastrado");
+  if (requireEmailDomain) fields.add("emailDomain");
   return fields;
 }
 
@@ -147,12 +186,41 @@ if (!result.envFileExists) {
   }
 
   if (result.formatOk) {
-    result.hasEmailDomain =
-      typeof data.emailDomain === "string" && data.emailDomain.trim().length > 0;
+    const rawDomain =
+      typeof data.emailDomain === "string" ? data.emailDomain.trim() : "";
+    result.hasEmailDomain = rawDomain.length > 0;
+    result.emailDomainValid =
+      result.hasEmailDomain && isValidEmailDomain(rawDomain);
+    result.emailDomainPlaceholder =
+      result.hasEmailDomain && isPlaceholderEmailDomain(rawDomain);
+
     if (!result.hasEmailDomain) {
       result.warnings.push(
         'Campo "emailDomain" ausente — necessário para Mass Factory gerar e-mails de cadastro com domínio autorizado.'
       );
+    } else if (!result.emailDomainValid) {
+      result.warnings.push(
+        'Campo "emailDomain" sintaticamente inválido — informe um domínio FQDN autorizado (ex.: time.exemplo.org).'
+      );
+    } else if (result.emailDomainPlaceholder) {
+      // exemplo.test cai em looksLikePlaceholder; demais placeholders documentados, aqui.
+      const probe = `probe@${rawDomain.replace(/^@/, "")}`;
+      const kindFromEmail = looksLikePlaceholder(probe, "");
+      if (kindFromEmail) {
+        notePlaceholder("emailDomain", probe, "");
+      } else {
+        result.placeholderSuspects.push({
+          field: "emailDomain",
+          kind: "dominio_placeholder_documentado",
+        });
+        const msg =
+          'Campo "emailDomain" parece placeholder documentado. Substitua por domínio autorizado real antes do Cadastro.';
+        const shouldBlock =
+          blockScope === "all" ||
+          (blockScope instanceof Set && blockScope.has("emailDomain"));
+        if (shouldBlock) result.blocks.push(msg);
+        else result.warnings.push(msg);
+      }
     }
 
     result.hasFlatCredentials = hasCred(data);
@@ -208,6 +276,26 @@ if (requireEmailJa && !result.profiles.emailJaCadastrado) {
   result.blocks.push(
     'Perfil "emailJaCadastrado" ausente — bloqueia cenário de e-mail já cadastrado.'
   );
+}
+
+if (requireEmailDomain) {
+  if (!result.hasEmailDomain) {
+    result.blocks.push(
+      'Campo "emailDomain" ausente — bloqueia Cadastro (Mass Factory precisa de domínio autorizado).'
+    );
+  } else if (!result.emailDomainValid) {
+    result.blocks.push(
+      'Campo "emailDomain" sintaticamente inválido — bloqueia Cadastro.'
+    );
+  } else if (result.emailDomainPlaceholder) {
+    // Garante bloqueio mesmo sem --reject-placeholders (pré-condição Cadastro).
+    const already = result.blocks.some((b) => /emailDomain/.test(b));
+    if (!already) {
+      result.blocks.push(
+        'Campo "emailDomain" parece placeholder documentado — bloqueia Cadastro.'
+      );
+    }
+  }
 }
 
 if (asJson) {
