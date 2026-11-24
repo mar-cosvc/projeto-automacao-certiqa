@@ -16,11 +16,11 @@ const questoesExameFinalPorCertificacao = [
   ...Object.values(questoesCtflAtExameFinal),
 ];
 
-const porcAprovacao = 0.65;
+// Regra de negócio CertiQA: Exame Final exige pelo menos 80% de acertos.
+const porcAprovacao = 0.8;
 let totalNumQuestoes;
 let numRespostasErradas;
 let respostasErradasRealizadas = 0;
-const opcaoResponder = ["acertar", "errar"];
 
 function normalizarPergunta(pergunta) {
   return pergunta
@@ -32,14 +32,30 @@ function normalizarPergunta(pergunta) {
     .toLowerCase();
 }
 
-function inteiroAleatorio(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+/** Mínimo de acertos e erros-alvo para fronteiras 80% (ex.: 40 questões → 32/31/33). */
+function errosAlvoPorCenario(totalQuestoes, nomeCenario) {
+  const minimoAcertos = Math.ceil(totalQuestoes * porcAprovacao);
+  const maxErrosParaAprovacao = totalQuestoes - minimoAcertos;
 
-function selecionarResposta(opcoes) {
-  return opcoes[Math.floor(Math.random() * opcoes.length)];
+  if (nomeCenario.includes("inferior")) {
+    return Math.min(maxErrosParaAprovacao + 1, totalQuestoes);
+  }
+  if (
+    nomeCenario.includes("igual") ||
+    nomeCenario.includes("Concluir exame com sucesso")
+  ) {
+    return maxErrosParaAprovacao;
+  }
+  if (
+    nomeCenario.includes("superior") ||
+    nomeCenario.includes("Concluir fase com sucesso")
+  ) {
+    return Math.max(maxErrosParaAprovacao - 1, 0);
+  }
+  if (nomeCenario.includes("100%")) {
+    return 0;
+  }
+  throw new Error(`Cenário "${nomeCenario}" não define a pontuação do exame final.`);
 }
 
 class ExamesFinalPage {
@@ -426,10 +442,16 @@ class ExamesFinalPage {
       });
   }
 
+  reiniciarEstadoCenario() {
+    totalNumQuestoes = undefined;
+    numRespostasErradas = undefined;
+    respostasErradasRealizadas = 0;
+  }
+
   // Responde corretamente as primeiras questões necessárias para atingir a porcentagem pedida.
   responderSimuladoFinalPorPorcentagem(percentualAprovacao) {
     const totalQuestoes = 40;
-    const quantidadeAcertos = Math.round(totalQuestoes * percentualAprovacao);
+    const quantidadeAcertos = Math.ceil(totalQuestoes * percentualAprovacao);
 
     cy.get(".space-y-6")
       .should("have.length", totalQuestoes)
@@ -495,9 +517,7 @@ class ExamesFinalPage {
 
   finalizarExameFinal(indice, nomeCenario) {
     if (indice === 0) {
-      totalNumQuestoes = undefined;
-      numRespostasErradas = undefined;
-      respostasErradasRealizadas = 0;
+      this.reiniciarEstadoCenario();
     }
 
     const obterTotalQuestoes = totalNumQuestoes === undefined
@@ -509,48 +529,20 @@ class ExamesFinalPage {
 
     return obterTotalQuestoes.then((totalQuestoes) => {
       if (numRespostasErradas === undefined) {
-        const limiteDeErros = Math.floor(
-          totalQuestoes - totalQuestoes * porcAprovacao
-        );
-        if (nomeCenario.includes("inferior")) {
-          numRespostasErradas = inteiroAleatorio(limiteDeErros + 1, totalQuestoes);
-          cy.log(`\n\n========== NUMERO DE RESPOSTAS ERRADAS: ${numRespostasErradas}`)
-        } else if (
-          nomeCenario.includes("igual") ||
-          nomeCenario.includes("Concluir exame com sucesso")
-        ) {
-          numRespostasErradas = limiteDeErros;
-          cy.log(`\n\n========== NUMERO DE RESPOSTAS ERRADAS: ${numRespostasErradas}`)
-        } else if (
-          nomeCenario.includes("superior") ||
-          nomeCenario.includes("Concluir fase com sucesso")
-        ) {
-          numRespostasErradas = inteiroAleatorio(1, limiteDeErros - 1);
-          cy.log(`\n\n========== NUMERO DE RESPOSTAS ERRADAS: ${numRespostasErradas}`)
-        } else if (
-          nomeCenario.includes("100%")
-        ) {
-          numRespostasErradas = 0;
-        }
-        else {
-          throw new Error(`Cenário "${nomeCenario}" não define a pontuação do exame final.`);
-        }
+        numRespostasErradas = errosAlvoPorCenario(totalQuestoes, nomeCenario);
+        cy.log(`Exame Final: ${numRespostasErradas} erros planejados de ${totalQuestoes} (regra ${porcAprovacao * 100}%)`);
       }
 
-      return this.buscarQuestaoAtualExameFinal(indice).then((questao) => {
-        const respostaSelecionada = selecionarResposta(opcaoResponder);
-        const respostaFinal =
-          respostaSelecionada === "errar" &&
-            respostasErradasRealizadas >= numRespostasErradas
-            ? "acertar"
-            : respostaSelecionada;
+      // Determinístico: exatamente N primeiras questões erradas; demais corretas.
+      const deveErrar = respostasErradasRealizadas < numRespostasErradas;
 
-        const responder = respostaFinal === "errar"
+      return this.buscarQuestaoAtualExameFinal(indice).then((questao) => {
+        const responder = deveErrar
           ? this.responderQuestaoIncorretamenteExameFinal(indice, questao)
           : this.responderQuestaoCorretamenteExameFinal(indice, questao);
 
         return responder.then(() => {
-          if (respostaFinal === "errar") {
+          if (deveErrar) {
             respostasErradasRealizadas += 1;
           }
         });

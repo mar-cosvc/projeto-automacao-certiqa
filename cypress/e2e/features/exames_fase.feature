@@ -86,7 +86,7 @@ Então validar fase aprovada
 Cenário: Exame final liberado
 Quando acessar o menu "Certificações" e seleciona certificação "(CTFL)"
 Então validar Exame final disponibilizado para realização
-      
+
       Esquema do Cenário: Aprovação com pontuação superior a 70 por cento
       E selecionou a fase "<fase>" da certificação "<certificacao>"
       Quando responde 80 por cento das questões corretamente

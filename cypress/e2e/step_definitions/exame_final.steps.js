@@ -3,8 +3,11 @@ import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocess
 import exameFinalPage from "../../support/pages/exame_final.page";
 import examesFasePage from "../../support/pages/exames_fase.page";
 
+let nomeCenario = "";
+
 Before(({ pickle }) => {
   nomeCenario = pickle.name;
+  exameFinalPage.reiniciarEstadoCenario();
 });
 
 Given("que o aluno {string} está logado no sistema", (tipoUsuario) => {

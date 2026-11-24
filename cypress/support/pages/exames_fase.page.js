@@ -3,7 +3,8 @@ import certificacoes from "../../fixtures/certificacoes.json";
 import questoesCtfl from "../../fixtures/questoes_ctfl.json";
 import questoesCtflAt from "../../fixtures/questoes_ctfl-at.json";
 
-const porcAprovacao = 0.6;
+// Regra de negócio CertiQA: Exames de Fase exigem pelo menos 70% de acertos.
+const porcAprovacao = 0.7;
 let totalNumQuestoes;
 
 class ExamesFasePage {
@@ -115,7 +116,8 @@ class ExamesFasePage {
         return this.fasesConcluidas()
             .invoke("text")
             .then((texto) => {
-                const totalFasesConcluídas = parseInt(texto.split(" de")[1].trim());
+                // Texto esperado no formato "X de Y" — X = concluídas.
+                const totalFasesConcluídas = parseInt(texto.split(" de")[0].trim(), 10);
                 return totalFasesConcluídas;
             });
     }
@@ -133,22 +135,16 @@ class ExamesFasePage {
     }
 
     login() {
-        cy.visit("/");
-        cy.contains("button", "Login").click();
-        cy.get("#email").type("tisita1276@caps7.com");
-        cy.get("#password").type("123456");
-        cy.contains("button", "Entrar").click();
-        cy.url().should("eq", `${Cypress.config("baseUrl")}painel`);
-        cy.contains("div", "Login bem-sucedido").should("be.visible");
-        cy.contains("div", "Bem-vindo, Usuario Teste!").should("be.visible");
+        // Credenciais vêm de cypress.env.json via comando customizado (não versionar segredos).
+        cy.login();
     }
 
     informarEmail(email) {
-        cy.get("#email").type(email);
+        cy.get("#email").type(email, { log: false });
     }
 
     informarSenha(password) {
-        cy.get("#password").type(password);
+        cy.get("#password").type(password, { log: false });
     }
 
     clicarEntrar() {
@@ -411,12 +407,16 @@ class ExamesFasePage {
     }
 
     numRespostasErradas(totalQuestoes, nomeCenario) {
+        // Mínimo de acertos = ceil(total * 70%); erros máximos para aprovação = total - mínimo.
+        const minimoAcertos = Math.ceil(totalQuestoes * porcAprovacao);
+        const maxErrosParaAprovacao = totalQuestoes - minimoAcertos;
+
         if (nomeCenario.includes("inferior")) {
-            return Math.floor(totalQuestoes * (1 - porcAprovacao)) + 1
+            return Math.min(maxErrosParaAprovacao + 1, totalQuestoes);
         } else if (nomeCenario.includes("igual") || nomeCenario.includes("Concluir exame com sucesso")) {
-            return Math.floor(totalQuestoes * (1 - porcAprovacao))
+            return maxErrosParaAprovacao;
         } else if (nomeCenario.includes("superior") || nomeCenario.includes("Concluir fase com sucesso")) {
-            return Math.floor(totalQuestoes * (1 - porcAprovacao)) - 1
+            return Math.max(maxErrosParaAprovacao - 1, 0);
         }
     }
 
