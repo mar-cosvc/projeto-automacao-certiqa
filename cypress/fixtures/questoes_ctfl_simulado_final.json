@@ -1,0 +1,202 @@
+{
+    "questao 1 de 40": {
+        "pergunta": "Qual técnica de teste divide o domínio de entrada em classes onde o programa se comporta da mesma maneira?",
+        "resposta-correta": "Particionamento de equivalência",
+        "explicacao": "O particionamento de equivalência divide o domínio de entrada em classes ou partições onde o sistema deve comportar-se de maneira similar para qualquer valor dentro da mesma partição."
+    },
+    "questao 2 de 40": {
+        "pergunta": "Qual a principal diferença entre teste de componente e teste de integração?",
+        "resposta-correta": "Teste de compoenente verifica componentes individuais isoladamente; teste de integração verifica interfaces entre componentes",
+        "explicacao": "O teste de componente concentra-se em verificar o funcionamento isolado de componentes indidviduais, enquanto o teste de integração verifica as interfaces e interações entre componentes integrados"
+    },
+    "questao 3 de 40 ": {
+        "pergunta": "O que deve ser considerado ao estimar o esforço de teste?",
+        "resposta-correta": "Complexidade do produto, nível de risco e habilidades da equipe",
+        "explicacao": "Complexidade do produto, nível de risco, habilidades da equipe e experiência prévia são todos fatores importantes a considerar ao estimar o esforço necessário para o teste."
+    },
+    "questao 4 de 40": {
+        "pergunta": "O que é teste de regressão?",
+        "resposta-correta": "Testar para verificar se mudanças não afetaram negativamente funcionalidades existentes",
+        "explicacao": "O teste de regressão envolve executar testes para verificar se mudanças recentes não afetaram negativamente funcionalidades existentes, garantindo que o que funcionava antes continua funcionando."
+    },
+    "questao 5 de 40": {
+        "pergunta": "Qual das seguintes afirmações descreve melhor a relação entre as atividades de teste e o desenvolvimento de software?",
+        "resposta-correta": "As atividades de teste devem ser integradas em cada estágio do ciclo de vida de desenvolvimento",
+        "explicacao": "Embora a maioria das atividades de teste ocorra ap[os a codificação, as atividades de teste devem ser integradas em cada estágio de ciclo de vida de desemvolvimento"
+    },
+    "questao 6 de 40": {
+        "pergunta": "Qual das seguintes afirmações ilustra o princípio 'Ausência de erros é uma falácia'?",
+        "resposta-correta": "Um software pode estar livre de defeitos mas ainda assim não atender ãs necessidades dos usuários",
+        "explicacao": "O princípio 'A ausência de erros é uma falácia' significa que mesmo se um sistema estiver completamente livre de defeitos, isso não garante que atenderá às necessidades dos usuários, que é o propósito real do software."
+    },
+    "questao 7 de 40": {
+        "pergunta": "Qual técnica testa as transições entre estados de um sistema?",
+        "resposta-correta": "Teste de transição de estado",
+        "explicacao": "O teste de transição de estado é usado para testar a capacidade de sistema de entrar e sair de estados definidos, as transições entre estados e o comportamento associado a essas mudanças de estado."
+    },
+    "questao 8 de 40": {
+        "pergunta": "Qual técnica de teste é baseada na experência do testador?",
+        "resposta-correta": "Adivinhação de erro",
+        "explicacao": "A adivinhação de erro é uma técnica baseada na experiência, onde o testados usa seu conhecimento e experiência para antecipar onde os defeitos pode estar escondidos."
+    },
+    "questao 9 de 40": {
+        "perguta": "Qual dos seguintes é um benefício da independência de teste?",
+        "reposta-correta": "Desenvolvimento mais rápido de código",
+        "explicacao": "Testers independentes são mais eficazes em encontrar defeitos porque não têm vieses sobre o código e podem questionar premissas."
+    },
+    "questao 10 de 40": {
+        "perguta": "Qual é uma das principais vantagens do teste estático sobre o teste dinâmico?",
+        "resposta-correta": "Detectar defeitos antes da execução do código",
+        "explicacao": "Uma grande vantagem do teste estático é permitir a detecção antecipada de defeitos antes da execução do código, economizando tempo e custo de correção."
+    },
+    "questao 11 de 40": {
+        "perguta": "Qual é o propósito principal de um plano de teste?",
+        "resposta-correta": "Definir o escopo, abordagem, recursos e cronograma das atividades de teste",
+        "explicacao": "Um plano de teste define o escopo, abordagem, recursos e cronograma das atividades de teste."
+    },
+    "questao 12 de 40": {
+        "perguta": "Qual papel em uma revisão formal tem a responsabilidade de liderar a discussão e tomar decisões?",
+        "resposta-correta": "Moderador",
+        "explicacao": "O moderador (ou facilitador) é responsável por liderar a reunião de revisão, garantir que os objetivos sejam cumpridos, e facilitar a tomada de decisões do grupo."
+    },
+    "questao 13 de 40": {
+        "perguta": "No contexto de um modelo ágil, quando deve ocorrer o teste?",
+        "rsposta-correta": "Em paralelo com a codificação em cada iteração",
+        "explicacao": "No desenvolvimento ágil, o teste ocorre em paralelo com a codificação em cada iteração, não apenas no final de cada iteração ou sprint."
+    },
+    "questao 14 de 40": {
+        "perguta": "Qual das alternativas a seguir é um objetivo do processo de teste?",
+        "resposta-correta": "Encontrar defeitos e reduzir o nível de risco de qualidade",
+        "explicacao": "Encontrar defeitos e reduzir o nível de risco de qualidade são objetivos fundamentais do processo de teste. O teste busca identificar falhas antes que o software entre em produção."
+    },
+    "questao 15 de 40": {
+        "perguta": "Qual é um risco comum na introdução de uma ferramenta de teste em uma organização?",
+        "resposta-correta": "Ter expectativas irrealistas sobre o que a ferramenta pode fazer",
+        "explicacao": "Um risco comum é ter expectativas irrealistas sobre o que a ferramenta pode fazer, como supor que ela automaticamente melhorará a qualidade ou encontrará todos os defeitos sem esforço humano significativo."
+    },
+    "questao 16 de 40": {
+        "perguta": "O que é teste exploratório?",
+        "resposta-correta": "Teste simultâneo de aprendizado, design e execução",
+        "explicacao": "Teste exploratório é uma abordagem simultânea de aprendizado, design e execução de testes, em que o testador explora o sistema enquanto cria e executa testes dinamicamente."
+    },
+    "questao 17 de 40": {
+        "perguta": "O que é o paradoxo do pesticida em testes de software?",
+        "resposta-correta": "Os mesmos testes repetidos continuamente deixam de encontrar novos defeitos",
+        "explicacao": "O paradoxo do pesticida descreve a situação em que os mesmos testes repetidos continuamente deixam de encontrar novos defeitos."
+    },
+    "questao 18 de 40": {
+        "perguta": "Qual das seguintes é uma técnica de caixa-branca?",
+        "resposta-correta": "Teste de decisão",
+        "explicacao": "O teste de decisão é uma técnica de caixa-branca porque se baseia no conhecimento da estrutura interna do código, exigindo acesso ao código fonte para verificar a cobertura das decisões."
+    },
+    "questao 19 de 40": {
+        "perguta": "Qual tipo de teste avalia características como eficiência, usabilidade e confiabilidade?",
+        "resposta-correta": "Teste não-funcional",
+        "explicacao": "O teste não-funcional avalia atributos de qualidade do sistema como desempenho, usabilidade, confiabilidade e segurança, em vez das funcionalidades específicas."
+    },
+    "questao 20 de 40": {
+        "perguta": "Qual nível de cobertura é mais rigoroso: cobertura de instrução ou cobertura de decisão?",
+        "resposta-correta": "Cobertura de decisão",
+        "explicacao": "A cobertura de decisão é mais rigorosa porque exige que cada resultado possível de decisão (verdadeiro/falso) seja executado pelo menos uma vez, o que implica também em cobertura de instruções."
+    },
+    "questao 21 de 40": {
+        "perguta": "Qual das seguintes é uma técnica de teste baseada em especificação?",
+        "resposta-correta": "Particionamento de equivalência",
+        "explicacao": "O particionamento de equivalência é uma técnica de teste baseada em especificação, pois usa a especificação do sistema para derivar casos de teste sem referência à estrutura interna."
+    },
+    "questao 22 de 40": {
+        "perguta": "Qual das seguintes características é mais adequada ao teste de aceitação?",
+        "resposta-correta": "Focalizado em validar se o sistema atende às necessidades de negócio",
+        "explicacao": "O teste de aceitação é principalmente focalizado em validar se o sistema atende às necessidades de negócio e requisitos dos usuários, não em aspectos técnicos."
+    },
+    "questao 23 de 40": {
+        "perguta": "Qual das seguintes NÃO é uma métrica de teste comumente usada?",
+        "reposta-correta": "Número de linhas de código por desenvolvedor",
+        "explicacao": "O número de linhas de código por desenvolvedor é uma métrica de produtividade de desenvolvimento, não uma métrica de teste, que tipicamente incluiria medidas como cobertura, densidade de defeitos ou taxas de aprovação/falha."
+    },
+    "questao 24 de 40": {
+        "perguta": "Qual é o principal objetivo da análise de impacto em testes de manutenção?",
+        "resposta-correta": "Identificar quais áreas do sistema são afetadas por mudanças",
+        "explicacao": "A análise de impacto em testes de manutenção identifica as áreas afetadas por mudanças para focar esforços de teste."
+    },
+    "questao 25 de 40": {
+        "perguta": "Em um modelo V, o teste de sistema está associado a qual artefato?",
+        "resposta-correta": "Especificação de requisitos do sistema",
+        "explicacao": "No modelo V, o teste de sistema está diretamente associado à especificação de requisitos do sistema."
+    },
+    "questao 26 de 40": {
+        "perguta": "Quais das seguintes descrições explicam a diferença entre teste e depuração?",
+        "resposta-correta": "Teste identifica a existência de defeitos; depuração encontra, analisa e remove as causas dos defeitos",
+        "explicacao": "O teste identifica a existência de defeitos, enquanto a depuração (debugging) é o processo de análise da causa-raiz de um defeito, sua localização exata e correção."
+    },
+    "questao 27 de 40": {
+        "perguta": "Qual é a definição correta de 'erro'?",
+        "resposta-correta": "Uma ação humana que produz um resultado incorreto",
+        "explicacao": "Um erro (mistake) é uma ação humana que produz um resultado incorreto, como um engano de codificação cometido por um programador."
+    },
+    "questao 28 de 40": {
+        "perguta": "O que é um risco de produto no contexto de teste?",
+        "resposta-correta": "A possibilidade de que o produto falhe",
+        "explicacao": "Um risco de produto está relacionado à possibilidade de que o produto falhe em atender às necessidades dos usuários ou que tenha problemas de qualidade, como falhas funcionais ou não-funcionais."
+    },
+    "questao 29 de 40": {
+        "perguta": "Para testar uma função que calcula imposto com base em faixas de renda, qual técnica seria mais eficaz?",
+        "rsposta-correta": "Análise de valor limite",
+        "explicacao": "Análise de valor limite seria mais eficaz porque permitiria testar os pontos exatos onde o cálculo muda de uma faixa para outra, que são pontos críticos em sistemas baseados em faixas."
+    },
+    "questao 30 de 40": {
+        "perguta": "O que é um critério de entrada no contexto de gerenciamento de teste?",
+        "resposta-correta": "Uma condição para iniciar os testes",
+        "explicacao": "Critérios de entrada são condições que devem ser atendidas antes que uma atividade de teste possa começar, como disponibilidade do ambiente de teste ou requisitos completos."
+    },
+    "questao 31 de 40": {
+        "perguta": "Qual das seguintes afirmações sobre os princípios de teste é VERDADEIRA?",
+        "resposta-correta": "O teste exaustivo é impossível",
+        "explicacao": "O teste exaustivo é impossível porque não é prático testar todas as combinações de entradas e pré-condições possíveis, mesmo em sistemas simples."
+    },
+    "questao 32 de 40": {
+        "perguta": "Em um sistema com muitos fluxos condicionais, qual combinação de técnicas seria mais eficaz?",
+        "resposta-correta": "Tabela de decisão e teste de decisão",
+        "explicacao": "A combinação de tabela de decisão e teste de decisão seria mais eficaz porque a tabela de decisão ajuda a identificar todas as combinações de condições (visão caixa-preta), enquanto o teste de decisão garante a cobertura do código (visão caixa-branca)."
+    },
+    "questao 33 de 40": {
+        "perguta": "Para qual situação a técnica de tabela de decisão é mais apropriada?",
+        "resposta-correta": "Quando há múltiplas combinações de condições",
+        "explicacao": "Tabelas de decisão são especialmente úteis quando há múltiplas combinações de condições que levam a diferentes ações ou resultados, permitindo visualizar e testar todas as combinações lógicas."
+    },
+    "questao 34 de 40": {
+        "perguta": "Qual é a principal vantagem de ter independência no teste?",
+        "resposta-correta": "Permite identificar diferentes tipos de falhas devido à ausência de viés",
+        "explicacao": "A principal vantagem da independência no teste é que testadores independentes têm uma perspectiva diferente e podem encontrar defeitos que os desenvolvedores podem não perceber devido a viés de confirmação."
+    },
+    "questao 35 de 40": {
+        "perguta": "Qual é a principal diferença entre severidade e prioridade de um defeito?",
+        "resposta-correta": "Severidade refere-se ao impacto técnico; prioridade refere-se à importância de negócio",
+        "explicacao": "Severidade refere-se ao impacto técnico do defeito no funcionamento do sistema, enquanto prioridade refere-se à importância de negócio em corrigir o defeito."
+    },
+    "questao 36 de 40": {
+        "perguta": "Qual das seguintes atividades é parte do processo de teste?",
+        "resposta-correta": "Codificação de funções",
+        "explicacao": "O planejamento de teste está incluído nas atividades fundamentais do processo de teste, conforme descrito no syllabus ISTQB."
+    },
+    "questao 37 de 40": {
+        "perguta": "Qual é o objetivo do teste de instrução (cobertura de instruções)?",
+        "resposta-correta": "Executar cada instrução no código pelo menos uma vez",
+        "explicacao": "O objetivo do teste de instrução é garantir que cada instrução no código seja executada pelo menos uma vez durante os testes, verificando a cobertura básica do código."
+    },
+    "questao 38 de 40": {
+        "perguta": "Qual das seguintes afirmações explica o princípio 'Teste antecipado'?",
+        "resposta-correta": "As atividades de teste devem começar o mais cedo possível no ciclo de desenvolvimento",
+        "explicacao": "O princípio 'Teste antecipado' enfatiza que as atividades de teste devem começar o mais cedo possível no ciclo de desenvolvimento para encontrar defeitos quando são mais baratos de corrigir."
+    },
+    "questao 39 de 40": {
+        "perguta": "O que deve conter um relatório de defeito bem escrito?",
+        "resposta-correta": "Passos para reproduzir, resultados esperados versus reais e contexto",
+        "explicacao": "Um relatório de defeito bem escrito deve incluir detalhes sobre o contexto, passos de reprodução, resultados esperados versus reais e outras informações que ajudem a entender, reproduzir e corrigir o defeito."
+    },
+    "questao 40 de 40": {
+        "perguta": "Qual das seguintes técnicas é um exemplo de teste estático?",
+        "resposta-correta": "Revisão de código",
+        "explicacao": "A revisão de código é uma técnica de teste estático porque envolve examinar o código sem executá-lo, buscando encontrar problemas através da análise do código-fonte."
+    }
+}
