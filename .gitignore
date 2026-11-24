@@ -7,6 +7,9 @@ cypress/screenshots/
 cypress/downloads/
 cypress/results/
 
+# Evidências da suíte orquestrada
+evidence/
+
 # Cucumber reports
 cucumber-messages.ndjson
 cucumber-report.json
