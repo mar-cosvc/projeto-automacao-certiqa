@@ -1,0 +1,137 @@
+{
+    "CTFL": {
+        "fase 1": {
+            "titulo": "Fundamentos de Teste",
+            "gabarito": [
+                "Testes sempre garantem software sem defeitos",
+                "Quando os mesmos testes repetidos param de encontrar novos defeitos",
+                "Verificar se o software atende aos requisitos e identificar defeitos",
+                "Paradoxo do pesticida",
+                "Pequeno número de módulos contém a maioria dos defeitos",
+                "Encontrar defeitos quando são mais baratos de corrigir",
+                "Sistema pode estar livre de defeitos mas ser inutilizável",
+                "Erro → Defeito → Falha",
+                "Deve ter alta probabilidade de encontrar um erro",
+                "Codificação"
+            ]
+        },
+        "fase 2": {
+            "titulo": "Teste Durante o Ciclo de Desenvolvimento de Software",
+            "gabarito": [
+                "Especificação de requisitos",
+                "Testes são contínuos e integrados",
+                "Testa componentes individuais isoladamente",
+                "Valida critérios de aceitação do usuário",
+                "Após modificações em sistemas existentes",
+                "Identifica partes afetadas por mudanças",
+                "Modelo em cascata (waterfall)",
+                "Verifica se defeito foi corrigido"
+            ]
+        },
+        "fase 3": {
+            "titulo": "Teste Estático",
+            "gabarito": [
+                "Teste estático verifica o código sem executá-lo, teste dinâmico executa o código",
+                "Requisitos, código, documentação, casos de teste",
+                "Facilita a reunião e garante que processo seja seguido",
+                "Define quando produto está pronto para revisão",
+                "Analisadores estáticos",
+                "Conduzido pelo autor, pode ser informal ou formal",
+                "Cedo no ciclo de desenvolvimento",
+                "Define quando revisão está completa"
+            ]
+        },
+        "fase 4": {
+            "titulo": "Análise e Design de Teste",
+            "gabarito": [
+                "Teste de Tabela de Decisão",
+                "Baseadas na especificação e comportamento observável",
+                "Para testar valores nos limites das partições",
+                "Modela software como máquina de estados",
+                "Suposição de erro (Error Guessing)",
+                "Exercita todas as decisões no código",
+                "Combina aprendizado, design e execução simultâneos",
+                "Deriva casos de teste de casos de uso",
+                "Exercitar todas as declarações executáveis",
+                "Depende do tipo de sistema, requisitos e recursos"
+            ]
+        },
+        "fase 5": {
+            "titulo": "Implementação e Execução de Teste",
+            "gabarito": [
+                "Descrição clara, passos para reproduzir, resultado esperado vs obtido",
+                "Dados válidos, inválidos, de limite e representativos",
+                "Hardware, software, conectividade e ferramentas",
+                "Sequência detalhada de ações e resultados esperados",
+                "Registrar execução, comparar real vs esperado, documentar evidências",
+                "Screenshots, logs, dados e estado do sistema",
+                "Impacto técnico no sistema",
+                "Quando atividades de teste podem ser consideradas completas",
+                "Passos para reproduzir",
+                "Usar dados anonimizados, mascarados ou sintéticos"
+            ]
+        },
+        "fase 6": {
+            "titulo": "Gerenciamento de Teste",
+            "gabarito": [
+                "Responsabilidade geral pelo processo de teste",
+                "Abordagem geral, níveis e tipos de teste",
+                "Estimativa baseada em métricas históricas",
+                "Quanto foi exercitado pelos testes",
+                "Severidade: impacto técnico; Prioridade: urgência de negócio",
+                "Potenciais falhas no software",
+                "Baseada em análise de risco",
+                "Quando há modelos do software disponíveis",
+                "Identificar, reportar, analisar, corrigir, verificar",
+                "Casos executados, defeitos encontrados, cobertura"
+            ]
+        }
+    },
+    "Agile Tester": {
+        "fase 1": {
+            "titulo": "Fundamentos dos Testes Ágeis",
+            "gabarito": [
+                "Indivíduos e interações mais que processos e ferramentas",
+                "Documentação mínima e focada no essencial",
+                "Facilitador de qualidade colaborando com toda equipe",
+                "Equipes multifuncionais com autonomia para decisões",
+                "Adaptar-se rapidamente a mudanças de requisitos",
+                "Permitem feedback rápido e ajustes frequentes",
+                "Garante benefícios tangíveis regulares ao cliente",
+                "É mais eficiente e permite feedback imediato",
+                "Promove parceria contínua e adaptação",
+                "Mantêm expertise técnica e integram-se à equipe"
+            ]
+        },
+        "fase 2": {
+            "titulo": "Aspectos dos Testes Ágeis",
+            "gabarito": [
+                "Muitos testes unitários, poucos testes de interface",
+                "Obter consenso da equipe sobre complexidade",
+                "Medida relativa de esforço baseada em complexidade",
+                "Responsabilidade compartilhada pela qualidade",
+                "Build automático e testes a cada mudança",
+                "São mais caros, lentos e difíceis de manter",
+                "Força discussão e consenso da equipe",
+                "Demonstrar funcionalidades e obter feedback",
+                "Têm todas habilidades internamente",
+                "Permite execução rápida e frequente"
+            ]
+        },
+        "fase 3": {
+            "titulo": "Métodos de Teste Ágil",
+            "gabarito": [
+                "Red-Green-Refactor",
+                "Product Owner, Developer, Tester",
+                "Given-When-Then",
+                "Investigação simultânea de aprendizado, design e execução",
+                "Abordagem estruturada com missão e tempo definidos",
+                "Garante que o teste realmente falha quando deveria",
+                "Define critérios claros antes do desenvolvimento",
+                "Usam linguagem natural estruturada",
+                "Descobre problemas não previstos",
+                "Captura conhecimento e documenta descobertas"
+            ]
+        }
+    }
+}

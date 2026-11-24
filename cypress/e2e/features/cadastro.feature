@@ -62,10 +62,10 @@ E clico no botão de finalizar cadastro
 Então o campo de email deve indicar um formato inválido
 
 Cenário: Email já cadastrado
-E preencho o campo de nome "Bárbara Maria"
-E preencho o campo de email "barbaraqaa@outlook.com" 
-E preencho o campo de senha "Babi9890*"
-E preencho o campo de confirmar senha "Babi9890*"
+E preencho o campo de nome com dados fictícios
+E preencho o campo de email com e-mail já cadastrado
+E preencho o campo de senha com a senha do e-mail já cadastrado
+E preencho o campo de confirmar senha com a senha do e-mail já cadastrado
 E clico no botão de finalizar cadastro
 Então devo ver a mensagem "Erro no cadastro"
 E devo ver a mensagem "Este e-mail já está sendo utilizado por outro usuário. Tente fazer login ou use outro e-mail."
@@ -95,7 +95,7 @@ E clico no botão de finalizar cadastro
 Então devo ver a mensagem "As senhas não coincidem"
 
 
-Cenário: Cadastro com campos vazios 
+Cenário: Cadastro com campos vazios
 E clico no botão de finalizar cadastro
 Então devo ver a mensagem "Nome é obrigatório"
 E devo ver a mensagem "E-mail é obrigatório"

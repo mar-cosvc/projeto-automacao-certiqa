@@ -1,0 +1,294 @@
+{
+    "fase1": {
+        "questao1": {
+            "pergunta": "Qual dos seguintes NÃO é um princípio de teste?",
+            "resposta-correta": "Testes sempre garantem software sem defeitos",
+            "explicacao": "Testes não garantem software sem defeitos. Na verdade, um dos princípios é que 'o teste mostra a presença de defeitos, não sua ausência'."
+        },
+        "questao2": {
+            "pergunta": "O que é o 'Paradoxo do Pesticida' em testes?",
+            "resposta-correta": "Quando os mesmos testes repetidos param de encontrar novos defeitos",
+            "explicacao": "O paradoxo do pesticida refere-se a quando os mesmos testes repetidos continuamente se tornam incapazes de encontrar novos defeitos, assim como os inseticida perdem o efeito contra pragas com o tempo."
+        },
+        "questao3": {
+            "pergunta": "Qual é o principal objetivo do teste de software?",
+            "resposta-correta": "Verificar se o software atende aos requisitos e identificar defeitos",
+            "explicacao": "O principal objetivo do teste de software é verificar se o comportamento real do software corresponde ao comportamento esperado (requisitos) e identificar qualquer defeito presente."
+        },
+        "questao4": {
+            "pergunta": "Qual princípio de teste afirma que executar os mesmos testes repetidamente se torna menos eficaz?",
+            "resposta-correta": "Paradoxo do pesticida",
+            "explicacao": "O paradoxo do pesticida afirma que, se os mesmos testes são repetidos continuamente, eles se tornam menos eficientes para encontrar novos defeitos."
+        },
+        "questao5": {
+            "pergunta": "O que significa 'agrupamento de defeitos' em teste de software?",
+            "resposta-correta": "Pequeno número de módulos contém a maioria dos defeitos",
+            "explicacao": "O agrupamento de defeitos significa que um pequeno número de módulos geralmente contém a maioria dos defeitos e concentra a maior parte dos testes e correção."
+        },
+        "questao6": {
+            "pergunta": "Por que 'teste antecipado economiza tempo e dinheiro'?",
+            "resposta-correta": "Encontrar defeitos quando são mais baratos de corrigir",
+            "explicacao": "Testar em etapas anteriores permite encontrar defeitos quando eles são mais baratos de corrigir, evitando custos altos de correção em fases tardias."
+        },
+        "questao7": {
+            "pergunta": "O que é a 'ausência de erros é uma falácia'?",
+            "resposta-correta": "Sistema pode estar livre de defeitos mas ser inutilizável",
+            "explicacao": "Mesmo que o sistema esteja 100% livre de defeitos, se não atender às necessidades dos usuários, ele é inútil/inviável."
+        },
+        "questao8": {
+            "pergunta": "Qual é a diferença entre erro, defeito e falha?",
+            "resposta-correta": "Erro → Defeito → Falha",
+            "explicacao": "Erro é o engano humano; defeito é o erro inserido no código; e falha é quando o defeito causa comportamento inesperado."
+        },
+        "questao9": {
+            "pergunta": "O que caracteriza um bom caso de teste?",
+            "resposta-correta": "Deve ter alta probabilidade de encontrar um erro",
+            "explicacao": "Um bom caso de teste deve ter alta probabilidade de encontrar um erro ainda não descoberto."
+        },
+        "questao10": {
+            "pergunta": "Qual atividade NÃO faz parte do processo fundamental de teste?",
+            "resposta-correta": "Codificação",
+            "explicacao": "Codificação não faz parte do processo de teste, que inclui: planejamento, análise, modelagem, implementação, execução e conclusão."
+        }
+    },
+    "fase2": {
+        "questao1": {
+            "pergunta": "No Modelo V, o que está corretamente associado ao teste de sistema?",
+            "resposta-correta": "Especificação de requisitos",
+            "explicacao": "No Modelo V, o teste de sistema está associado à Especificação de Requisitos, verificando se o sistema completo atende aos requisitos especificados."
+        },
+        "questao2": {
+            "pergunta": "No modelo ágil, como os testes são integrados ao desenvolvimento?",
+            "resposta-correta": "Testes são contínuos e integrados",
+            "explicacao": "No modelo ágil, os testes são contínuos e integrados ao desenvolvimento, com feedback rápido e iterações curtas."
+        },
+        "questao3": {
+            "pergunta": "Qual é o foco principal do teste de componente?",
+            "resposta-correta": "Testa componentes individuais isoladamente",
+            "explicacao": "O teste de componente foca em testar componentes individuais isoladamente, verificando funcionalidade específica."
+        },
+        "questao4": {
+            "pergunta": "O que caracteriza o teste de aceitação?",
+            "resposta-correta": "Valida critérios de aceitação do usuário",
+            "explicacao": "O teste de aceitação valida se o sistema atende aos critérios de aceitação e necessidades do usuário/cliente."
+        },
+        "questao5": {
+            "pergunta": "Quando é realizado o teste de manutenção?",
+            "resposta-correta": "Após modificações em sistemas existentes",
+            "explicacao": "Teste de manutenção é realizado após modificações em sistemas existentes para verificar que as mudanças não afetaram funcionalidades."
+        },
+        "questao6": {
+            "pergunta": "O que é análise de impacto?",
+            "resposta-correta": "Identifica partes afetadas por mudanças",
+            "explicacao": "Análise de impacto identifica quais partes do sistema podem ser afetadas por uma mudança, direcionando os esforços de teste."
+        },
+        "questao7": {
+            "pergunta": "Qual modelo de desenvolvimento tem fases sequenciais?",
+            "resposta-correta": "Modelo em cascata (waterfall)",
+            "explicacao": "O modelo em cascata (waterfall) tem fases sequenciais onde cada fase deve ser completada antes da próxima."
+        },
+        "questao8": {
+            "pergunta": "O que é teste de confirmação?",
+            "resposta-correta": "Verifica se defeito foi corrigido",
+            "explicacao": "Teste de confirmação verifica se um defeito foi corrigido adequadamente após a correção."
+        }
+    },
+    "fase3": {
+        "questao1": {
+            "pergunta": "Qual é a principal diferença entre teste estático e teste dinâmico?",
+            "resposta-correta": "Teste estático verifica o código sem executá-lo, teste dinâmico executa o código",
+            "explicacao": "Teste estático envolve a verificação de produtos de trabalho sem executar o código, enquanto teste dinâmico envolve a execução do código."
+        },
+        "questao2": {
+            "pergunta": "O que pode ser revisado em teste estático?",
+            "resposta-correta": "Requisitos, código, documentação, casos de teste",
+            "explicacao": "Teste estático pode revisar requisitos, especificações, código, casos de teste, documentação e outros artefatos de trabalho."
+        },
+        "questao3": {
+            "pergunta": "Qual é o papel do moderador em uma inspeção?",
+            "resposta-correta": "Facilita a reunião e garante que processo seja seguido",
+            "explicacao": "O moderador facilita a reunião, garante que o processo seja seguido e que todos tenham oportunidade de contribuir."
+        },
+        "questao4": {
+            "pergunta": "O que é uma entrada (entry criteria) para revisão?",
+            "resposta-correta": "Define quando produto está pronto para revisão",
+            "explicacao": "Critérios de entrada definem quando um produto de trabalho está pronto para ser revisado."
+        },
+        "questao5": {
+            "pergunta": "Qual ferramenta automatiza análise estática?",
+            "resposta-correta": "Analisadores estáticos",
+            "explicacao": "Ferramentas como analisadores estáticos automatizam a verificação de código sem executá-lo."
+        },
+        "questao6": {
+            "pergunta": "O que caracteriza um walkthrough?",
+            "resposta-correta": "Conduzido pelo autor, pode ser informal ou formal",
+            "explicacao": "Walkthrough é conduzido pelo autor do documento e pode variar de informal a formal."
+        },
+        "questao7": {
+            "pergunta": "Quando defeitos são mais baratos de corrigir?",
+            "resposta-correta": "Cedo no ciclo de desenvolvimento",
+            "explicacao": "Defeitos são mais baratos de corrigir quando encontrados cedo no ciclo de desenvolvimento."
+        },
+        "questao8": {
+            "pergunta": "O que é saída (exit criteria) de revisão?",
+            "resposta-correta": "Define quando revisão está completa",
+            "explicacao": "Critérios de saída definem quando a revisão está completa e o produto pode prosseguir."
+        }
+    },
+    "fase4": {
+        "questao1": {
+            "pergunta": "Qual técnica é mais adequada para testar regras de negócio complexas?",
+            "resposta-correta": "Teste de Tabela de Decisão",
+            "explicacao": "Teste de Tabela de Decisão é ideal para regras de negócio complexas pois permite combinar diferentes condições e suas ações resultantes."
+        },
+        "questao2": {
+            "pergunta": "O que caracteriza as técnicas caixa-preta?",
+            "resposta-correta": "Baseado em requisitos, função e comportamento observável",
+            "explicacao": "Testes baseados em caixa preta se baseiam nas especificações, requisitos e comportamento observável, sem necessidade de conhecer a estrutura interna."
+        },
+        "questao3": {
+            "pergunta": "Quando usar Análise de Valor Limite?",
+            "resposta-correta": "Para testar valores nos limites das partições",
+            "explicacao": "Análise de Valor Limite é usada para testar valores nos limites das partições, onde defeitos frequentemente ocorrem."
+        },
+        "questao4": {
+            "pergunta": "O que é teste de transição de estado?",
+            "resposta-correta": "Modela software como máquina de estados",
+            "explicacao": "Teste de transição de estado é usado para modelar o software como uma máquina de estados, testando transições válidas e inválidas."
+        },
+        "questao5": {
+            "pergunta": "Qual técnica usa a experiência do testador?",
+            "resposta-correta": "Suposição de erro (Error Guessing)",
+            "explicacao": "Suposição de erro (Error Guessing) usa a experiência do testador para antecipar possíveis defeitos."
+        },
+        "questao6": {
+            "pergunta": "O que é cobertura de decisão?",
+            "resposta-correta": "Exercita todas as decisões no código",
+            "explicacao": "Cobertura de decisão exercita todas as decisões no código, testando resultados verdadeiro e falso."
+        },
+        "questao7": {
+            "pergunta": "Quando usar teste exploratório?",
+            "resposta-correta": "Combina aprendizado, design e execução simultâneos",
+            "explicacao": "Teste exploratório combina aprendizado, design e execução simultânea, útil para investigação do produto."
+        },
+        "questao8": {
+            "pergunta": "O que caracteriza teste baseado em caso de uso?",
+            "resposta-correta": "Deriva casos de teste de casos de uso",
+            "explicacao": "Teste baseado em caso de uso deriva casos de teste de casos de uso visando interações de usuário."
+        },
+        "questao9": {
+            "pergunta": "Qual é o objetivo da cobertura de instrução?",
+            "resposta-correta": "Exercitar todas as declarações executáveis",
+            "explicacao": "Cobertura de instrução visa exercitar todas as declarações executáveis no código pelo menos uma vez."
+        },
+        "questao10": {
+            "pergunta": "Como escolher a técnica de teste adequada?",
+            "resposta-correta": "Depende do tipo de sistema, requisitos e recursos",
+            "explicacao": "A escolha depende dos tipos de sistema, requisitos, modelos de ciclo de vida, riscos e recursos disponíveis."
+        }
+    },
+    "fase5": {
+        "questao1": {
+            "pergunta": "O que deve ser incluído em um relatório de defeito?",
+            "resposta-correta": "Descrição clara, passos para reproduzir, resultado esperado vs obtido",
+            "explicacao": "Um relatório de defeito deve incluir descrição clara, passos para reproduzir, resultado esperado vs obtido, e informações do ambiente."
+        },
+        "questao2": {
+            "pergunta": "O que são dados de teste?",
+            "resposta-correta": "Dados válidos, inválidos, de limite e representativos",
+            "explicacao": "Dados de teste incluem dados válidos, inválidos, de limite e representativos do ambiente de produção."
+        },
+        "questao3": {
+            "pergunta": "O que deve ser verificado no ambiente de teste?",
+            "sua_resposta": "Apenas dados de teste",
+            "resposta-correta": "Hardware, software, conectividade e ferramentas"
+        },
+        "questao4": {
+            "pergunta": "O que são procedimentos de teste?",
+            "resposta-correta": "Sequência detalhada de ações e resultados esperados",
+            "explicacao": "Procedimentos de teste definem sequência detalhada de ações, dados de entrada e resultados esperados."
+        },
+        "questao5": {
+            "pergunta": "Como deve ser feito o logging de resultados?",
+            "resposta-correta": "Registrar execução, comparar real vs esperado, documentar evidências",
+            "explicacao": "Logging deve registrar cada execução, comparar resultado real vs esperado e documentar evidências."
+        },
+        "questao6": {
+            "pergunta": "O que incluir na documentação de evidências?",
+            "resposta-correta": "Screenshots, logs, dados e estado do sistema",
+            "explicacao": "Evidências devem incluir screenshots, logs, dados de entrada/saída e estado do sistema."
+        },
+        "questao7": {
+            "pergunta": "Como classificar a severidade de um defeito?",
+            "resposta-correta": "Impacto técnico no sistema",
+            "explicacao": "Severidade indica o impacto técnico do defeito no sistema (crítico, alto, médio, baixo)."
+        },
+        "questao8": {
+            "pergunta": "O que são critérios de conclusão?",
+            "resposta-correta": "Quando atividades de teste podem ser consideradas completas",
+            "explicacao": "Critérios que definem quando as atividades de teste podem ser consideradas completas."
+        },
+        "questao9": {
+            "pergunta": "Qual informação é essencial em relatório de defeito?",
+            "resposta-correta": "Passos para reproduzir",
+            "explicacao": "Passos para reproduzir são essenciais para que desenvolvedores possam avaliar e corrigir o defeito."
+        },
+        "questao10": {
+            "pergunta": "Como preparar dados de teste seguros?",
+            "resposta-correta": "Usar dados anonimizados, mascarados ou sintéticos",
+            "explicacao": "Usar dados anonimizados, mascarados ou sintéticos para proteger informações sensíveis."
+        }
+    },
+    "fase6": {
+        "questao1": {
+            "pergunta": "Qual é a principal responsabilidade do Gerente de Teste?",
+            "resposta-correta": "Responsabilidade geral pelo processo de teste",
+            "explicacao": "O gerente de teste tem responsabilidade geral pelo processo de teste, incluindo planejamento, estimativas, monitoramento e coordenação."
+        },
+        "questao2": {
+            "pergunta": "O que é estratégia de teste?",
+            "resposta-correta": "Abordagem geral, níveis e tipos de teste",
+            "explicacao": "Estratégia de teste define a abordagem geral, níveis, tipos de teste e critérios para o projeto."
+        },
+        "questao3": {
+            "pergunta": "Qual técnica de estimativa usa dados históricos?",
+            "resposta-correta": "Estimativa baseada em métricas históricas",
+            "explicacao": "Estimativa baseada em métricas históricas usa dados de projetos anteriores para prever esforço."
+        },
+        "questao4": {
+            "pergunta": "O que mede a métrica de cobertura?",
+            "resposta-correta": "Quanto foi exercitado pelos testes",
+            "explicacao": "Cobertura mede quanto do código, requisitos ou especificações foi exercitado pelos testes."
+        },
+        "questao5": {
+            "pergunta": "Qual é a diferença entre severidade e prioridade?",
+            "resposta-correta": "Severidade: impacto técnico; Prioridade: urgência de negócio",
+            "explicacao": "Severidade é o impacto técnico; prioridade é a urgência da correção baseada em fatores de negócio."
+        },
+        "questao6": {
+            "pergunta": "O que são riscos de produto?",
+            "resposta-correta": "Potenciais falhas no software",
+            "explicacao": "Riscos de produto são potenciais falhas ou problemas no software que podem afetar usuários."
+        },
+        "questao7": {
+            "pergunta": "O que caracteriza a abordagem analítica?",
+            "resposta-correta": "Baseada em análise de risco",
+            "explicacao": "Abordagem analítica é baseada em análise de risco, priorizando áreas de maior risco."
+        },
+        "questao8": {
+            "pergunta": "Quando usar abordagem baseada em modelo?",
+            "resposta-correta": "Quando há modelos do software disponíveis",
+            "explicacao": "Abordagem baseada em modelo usa modelos do software para derivar testes sistemáticos."
+        },
+        "questao9": {
+            "pergunta": "O que é ciclo de vida de defeitos?",
+            "resposta-correta": "Identificar, reportar, analisar, corrigir, verificar",
+            "explicacao": "Ciclo de vida do defeito inclui: identificar, reportar, analisar, corrigir e verificar."
+        },
+        "questao10": {
+            "pergunta": "Como medir progresso de teste?",
+            "resposta-correta": "Casos executados, defeitos encontrados, cobertura",
+            "explicacao": "Progresso pode ser medido por casos executados, defeitos encontrados, cobertura atingida."
+        }
+    }
+}

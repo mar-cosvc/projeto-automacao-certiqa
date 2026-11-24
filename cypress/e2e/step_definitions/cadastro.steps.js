@@ -1,12 +1,11 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { faker } from '@faker-js/faker/locale/pt_BR';
 
-// O plugin @badeball exporta Given, When e Then.
-// No Gherkin, "E" / "And" é só um atalho visual: o passo é mapeado pelo TEXTO, não pela palavra-chave.
-// Criamos este alias para o time reconhecer os passos "E" com mais facilidade.
 const And = Given;
 
-//------ CADASTRO COM SUCESSO  -------
+function emailFicticioUnico() {
+  return `certiqa.${Date.now()}.${faker.string.alphanumeric(8)}@exemplo.test`.toLowerCase();
+}
 
 Given("que eu estou na página inicial do CertiQA", () => {
   cy.visit("/");
@@ -14,10 +13,8 @@ Given("que eu estou na página inicial do CertiQA", () => {
 
 When("eu clico no botão ou link de cadastro", () => {
   cy.contains("button", "Cadastro").click();
-
 });
 
-// Preencher o campo de nome
 And("preencho o campo de nome {string}", (nome) => {
   cy.get('input[placeholder="Digite seu nome completo"]')
     .clear();
@@ -28,58 +25,49 @@ And("preencho o campo de nome {string}", (nome) => {
   }
 });
 
-
-
-// Preencher os demais campos
 And("preencho os demais campos com dados fictícios", () => {
-  const email = faker.internet.email();
+  const email = emailFicticioUnico();
   const senha = "Qa1234";
 
   cy.get('input[placeholder="Digite seu e-mail"]')
     .clear()
-    .type(email);
+    .type(email, { log: false });
 
   cy.get('input[placeholder="Digite sua senha"]')
     .clear()
-    .type(senha);
+    .type(senha, { log: false });
 
   cy.get('input[placeholder="Confirme sua senha"]')
     .clear()
-    .type(senha);
+    .type(senha, { log: false });
 });
 
-// Finalizar cadastro
 And("clico no botão de finalizar cadastro", () => {
   cy.contains("button", "Cadastrar").click();
 });
 
-// Validar mensagem
 Then("devo ver a mensagem {string}", (mensagem) => {
   cy.contains("div", mensagem).should("be.visible");
 });
 
-// Preencher o nome com dados fictícios
 And("preencho o campo de nome com dados fictícios", () => {
   const nome = faker.person.fullName();
 
   cy.get('input[placeholder="Digite seu nome completo"]')
     .clear()
     .type(nome);
-
 });
 
-// Preencher campo email dados fictícios
 And("preencho o campo de email {string}", (email) => {
   cy.get('input[placeholder="Digite seu e-mail"]')
     .clear();
 
   if (email.trim() !== "") {
     cy.get('input[placeholder="Digite seu e-mail"]')
-      .type(email);
+      .type(email, { log: false });
   }
-
 });
-// validar o email sem o @ 
+
 Then("o campo de email deve indicar um formato inválido", () => {
   cy.get('input[placeholder="Digite seu e-mail"]')
     .should(($input) => {
@@ -88,34 +76,79 @@ Then("o campo de email deve indicar um formato inválido", () => {
     });
 });
 
-//validar senha e confirmação se senha já cadastrada
-
 And("preencho o campo de senha {string}", (senha) => {
   cy.get('input[placeholder="Digite sua senha"]')
-    .type(senha);
+    .type(senha, { log: false });
 });
 
 And("preencho o campo de confirmar senha {string}", (senha) => {
   cy.get('input[placeholder="Confirme sua senha"]')
-    .type(senha);
+    .type(senha, { log: false });
 });
 
-// Preencher somente o e-mail com dados fictícios
 And("preencho o campo de email com dados fictícios", () => {
-  const email = faker.internet.email();
+  const email = emailFicticioUnico();
 
   cy.get('input[placeholder="Digite seu e-mail"]')
     .clear()
-    .type(email);
-
+    .type(email, { log: false });
 });
 
-// Preencher somente a senha com dados fictícios
 And("preencho o campo de senha com dados fictícios", () => {
-  const senha = 123456
+  const senha = "123456";
 
   cy.get('input[placeholder="Digite sua senha"]')
     .clear()
-    .type(senha);
+    .type(senha, { log: false });
 });
 
+And("preencho o campo de email com e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const email = perfil.email;
+
+    if (typeof email !== "string" || !email.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.email" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Digite seu e-mail"]')
+      .clear()
+      .type(email, { log: false });
+  });
+});
+
+And("preencho o campo de senha com a senha do e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const password = perfil.password;
+
+    if (typeof password !== "string" || !password.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.password" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Digite sua senha"]')
+      .clear()
+      .type(password, { log: false });
+  });
+});
+
+And("preencho o campo de confirmar senha com a senha do e-mail já cadastrado", () => {
+  cy.env(["emailJaCadastrado"]).then((env) => {
+    const perfil = env.emailJaCadastrado || {};
+    const password = perfil.password;
+
+    if (typeof password !== "string" || !password.trim()) {
+      throw new Error(
+        'Configure "emailJaCadastrado.password" em cypress.env.json para o cenário de e-mail já cadastrado.'
+      );
+    }
+
+    cy.get('input[placeholder="Confirme sua senha"]')
+      .clear()
+      .type(password, { log: false });
+  });
+});
