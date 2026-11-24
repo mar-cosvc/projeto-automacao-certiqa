@@ -11,6 +11,13 @@ import path from "node:path";
  *   node scripts/check-env.mjs --require-email-ja-cadastrado
  *   node scripts/check-env.mjs --reject-placeholders
  *   node scripts/check-env.mjs --json
+ *
+ * Com --reject-placeholders + flags --require-*:
+ *   rejeita placeholders somente da união dos perfis exigidos.
+ * Com --reject-placeholders isolado:
+ *   validação global (qualquer placeholder conhecido bloqueia).
+ * Campos opcionais para a etapa ainda entram no diagnóstico (avisos),
+ * mas não bloqueiam.
  */
 
 const args = new Set(process.argv.slice(2));
@@ -22,6 +29,13 @@ const rejectPlaceholders = args.has("--reject-placeholders");
 
 const envPath = path.resolve("cypress.env.json");
 const examplePath = path.resolve("cypress.env.example.json");
+
+const PROFILE_KEYS = [
+  "alunoCompleto",
+  "alunoFasePendente",
+  "alunoReprovado",
+  "emailJaCadastrado",
+];
 
 const result = {
   envFileExists: fs.existsSync(envPath),
@@ -61,7 +75,11 @@ function looksLikePlaceholder(email, password) {
   const e = String(email || "").toLowerCase();
   const p = String(password || "");
   if (/@exemplo\.test$/i.test(e)) return "dominio_exemplo_test";
-  if (/seu\.usuario|aluno\.completo|aluno\.fase\.pendente|aluno\.reprovado|usuario\.ja\.cadastrado/i.test(e)) {
+  if (
+    /seu\.usuario|aluno\.completo|aluno\.fase\.pendente|aluno\.reprovado|usuario\.ja\.cadastrado/i.test(
+      e
+    )
+  ) {
     return "email_placeholder";
   }
   if (
@@ -74,14 +92,44 @@ function looksLikePlaceholder(email, password) {
   return null;
 }
 
+/**
+ * Escopo de campos cujo placeholder bloqueia com --reject-placeholders.
+ * - Sem flags --require-*: "all" (rigor global).
+ * - Com uma ou mais --require-*: união dos campos exigidos.
+ * - Sem --reject-placeholders: null (nunca bloqueia por placeholder).
+ * @returns {"all"|Set<string>|null}
+ */
+function placeholderBlockScope() {
+  if (!rejectPlaceholders) return null;
+  const anyRequire = requireAuth || requireProfiles || requireEmailJa;
+  if (!anyRequire) return "all";
+
+  const fields = new Set();
+  if (requireAuth) fields.add("email/password");
+  if (requireProfiles) {
+    fields.add("alunoCompleto");
+    fields.add("alunoFasePendente");
+    fields.add("alunoReprovado");
+  }
+  if (requireEmailJa) fields.add("emailJaCadastrado");
+  return fields;
+}
+
+const blockScope = placeholderBlockScope();
+
 function notePlaceholder(label, email, password) {
   const kind = looksLikePlaceholder(email, password);
-  if (kind) {
-    result.placeholderSuspects.push({ field: label, kind });
-    const msg = `Campo "${label}" parece placeholder (${kind}). Substitua por conta autorizada real antes do E2E.`;
-    if (rejectPlaceholders) result.blocks.push(msg);
-    else result.warnings.push(msg);
-  }
+  if (!kind) return;
+
+  result.placeholderSuspects.push({ field: label, kind });
+  const msg = `Campo "${label}" parece placeholder (${kind}). Substitua por conta autorizada real antes do E2E.`;
+
+  const shouldBlock =
+    blockScope === "all" ||
+    (blockScope instanceof Set && blockScope.has(label));
+
+  if (shouldBlock) result.blocks.push(msg);
+  else result.warnings.push(msg);
 }
 
 if (!result.envFileExists) {
@@ -112,6 +160,7 @@ if (!result.envFileExists) {
       notePlaceholder("email/password", data.email, data.password);
     }
 
+    // Perfis autenticados exigem email+password (G5-R3).
     for (const key of ["alunoCompleto", "alunoFasePendente", "alunoReprovado"]) {
       result.profiles[key] = hasCred(data[key]);
       if (result.profiles[key]) {
@@ -119,6 +168,7 @@ if (!result.envFileExists) {
       }
     }
 
+    // emailJaCadastrado: apenas e-mail (G6 Mass Factory — senha do form é fictícia).
     result.profiles.emailJaCadastrado = hasEmailOnly(data.emailJaCadastrado);
     if (result.profiles.emailJaCadastrado) {
       const emailJa =
