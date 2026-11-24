@@ -28,6 +28,7 @@ const result = {
   exampleExists: fs.existsSync(examplePath),
   formatOk: false,
   hasFlatCredentials: false,
+  hasEmailDomain: false,
   profiles: {
     alunoCompleto: false,
     alunoFasePendente: false,
@@ -47,6 +48,12 @@ function hasCred(obj) {
     typeof obj.password === "string" &&
     obj.password.trim().length > 0
   );
+}
+
+/** emailJaCadastrado: basta o e-mail (senha do form é fictícia na Mass Factory). */
+function hasEmailOnly(value) {
+  if (typeof value === "string") return value.trim().length > 0;
+  return Boolean(value && typeof value.email === "string" && value.email.trim());
 }
 
 /** Detecta placeholders conhecidos sem expor o valor. */
@@ -92,33 +99,41 @@ if (!result.envFileExists) {
   }
 
   if (result.formatOk) {
+    result.hasEmailDomain =
+      typeof data.emailDomain === "string" && data.emailDomain.trim().length > 0;
+    if (!result.hasEmailDomain) {
+      result.warnings.push(
+        'Campo "emailDomain" ausente — necessário para Mass Factory gerar e-mails de cadastro com domínio autorizado.'
+      );
+    }
+
     result.hasFlatCredentials = hasCred(data);
     if (result.hasFlatCredentials) {
       notePlaceholder("email/password", data.email, data.password);
     }
 
-    for (const key of [
-      "alunoCompleto",
-      "alunoFasePendente",
-      "alunoReprovado",
-      "emailJaCadastrado",
-    ]) {
+    for (const key of ["alunoCompleto", "alunoFasePendente", "alunoReprovado"]) {
       result.profiles[key] = hasCred(data[key]);
       if (result.profiles[key]) {
         notePlaceholder(key, data[key].email, data[key].password);
       }
     }
 
-    if (
-      !result.profiles.emailJaCadastrado &&
-      typeof data.emailJaCadastrado === "string" &&
-      data.emailJaCadastrado.trim()
-    ) {
-      result.profiles.emailJaCadastrado = true;
-      result.warnings.push(
-        'Perfil "emailJaCadastrado" está como string. Prefira o formato objeto { email, password } do exemplo atual.'
-      );
-      notePlaceholder("emailJaCadastrado", data.emailJaCadastrado, "");
+    result.profiles.emailJaCadastrado = hasEmailOnly(data.emailJaCadastrado);
+    if (result.profiles.emailJaCadastrado) {
+      const emailJa =
+        typeof data.emailJaCadastrado === "string"
+          ? data.emailJaCadastrado
+          : data.emailJaCadastrado.email;
+      notePlaceholder("emailJaCadastrado", emailJa, "");
+      if (
+        typeof data.emailJaCadastrado === "object" &&
+        data.emailJaCadastrado.password
+      ) {
+        result.warnings.push(
+          'emailJaCadastrado.password é opcional: o cenário usa senha fictícia da Mass Factory (duplicidade valida só o e-mail).'
+        );
+      }
     }
   }
 }
@@ -155,6 +170,9 @@ if (asJson) {
   console.log(`formato JSON: ${result.formatOk ? "ok" : "falhou/ausente"}`);
   console.log(
     `credenciais flat (login): ${result.hasFlatCredentials ? "ok" : "ausentes"}`
+  );
+  console.log(
+    `emailDomain (Mass Factory): ${result.hasEmailDomain ? "ok" : "ausente"}`
   );
   for (const [k, v] of Object.entries(result.profiles)) {
     console.log(`perfil ${k}: ${v ? "ok" : "ausente"}`);

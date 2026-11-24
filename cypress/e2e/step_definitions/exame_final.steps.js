@@ -11,6 +11,7 @@ Before(({ pickle }) => {
 });
 
 Given("que o aluno {string} está logado no sistema", (tipoUsuario) => {
+  // Mass Factory: perfis alunoCompleto | alunoFasePendente | alunoReprovado
   cy.login(tipoUsuario);
 });
 

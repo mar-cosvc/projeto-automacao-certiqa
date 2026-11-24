@@ -178,6 +178,7 @@ npm run test:all
 ```
 
 Pré-condições detalhadas: [`docs/PRECONDICOES-E2E.md`](docs/PRECONDICOES-E2E.md).
+Mass Factory (geração/seleção de massa): [`docs/MASS-FACTORY.md`](docs/MASS-FACTORY.md).
 Os comandos `test:login` / `test:cadastro` / `test:fases` / `test:final` passam por `scripts/guard-stage.mjs` (não contornam as flags).
 
 Interface visual:
